@@ -1,6 +1,8 @@
 import Carousel from "../components/Carousel";
 import { useQuery } from "@tanstack/react-query";
 import ComponentsLoader from "../components/ComponentsLoader";
+import { ChevronRightIcon } from "@heroicons/react/solid";
+import MovieCard from "../components/MovieCard";
 
 export default function Home() {
   const moviesSlider = [];
@@ -48,10 +50,47 @@ export default function Home() {
         {isLoading ? (
           <ComponentsLoader />
         ) : isError ? (
-          <h1>ERROR</h1>
+          <p className="text-center italic">
+            Sorry, an error has occured. Unfortunately, this content isn't
+            available.
+          </p>
         ) : (
           <Carousel movie={moviesSlider} />
         )}
+      </section>
+      <section className="w-full max-w-[1920px] py-10 px-14 flex flex-col gap-y-10 overflow-x-hidden  xl:w-11/12 md:w-full">
+        <div>
+          <select
+            name="genres"
+            id="genres"
+            className="p-2 rounded-[4px] font-medium bg-white shadow-md"
+          >
+            <option value="">Genres</option>
+            <option value="action">Action</option>
+            <option value="documentaries">Documentaries</option>
+            <option value="horror">Horror</option>
+            <option value="romance">Romance</option>
+            <option value="thriller">Thriller</option>
+          </select>
+        </div>
+
+        <div className="w-full flex flex-col gap-y-6">
+          <div className="w-full flex justify-between items-center uppercase">
+            <h2 className="text-xl tracking-wide font-bold">
+              Popular right now
+            </h2>
+            <div className="w-fit flex items-center gap-x-1 font-medium hover:underline">
+              <p>See all</p>
+              <ChevronRightIcon className="w-5 h-5" />
+            </div>
+          </div>
+          <div className="w-full flex justify-evenly gap-x-8 xl:flex-wrap xl:gap-8 lg:justify-around md:flex-col">
+            <MovieCard />
+            <MovieCard />
+            <MovieCard />
+            <MovieCard />
+          </div>
+        </div>
       </section>
     </main>
   );

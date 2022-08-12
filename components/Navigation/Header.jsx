@@ -11,7 +11,7 @@ const Header = () => {
   const [searchBar, setSearchBar] = useState(false);
 
   return (
-    <header className="w-full max-w-[1920px] my-0 mx-auto h-24 px-20 flex items-center justify-start gap-x-20 xl:justify-between md:px-4  sm:gap-x-10 sm:px-8">
+    <header className="w-full max-w-[1920px] my-0 mx-auto h-24 px-20 flex items-center justify-start gap-x-20 xl:h-20 xl:justify-between md:px-4  sm:gap-x-10 sm:px-8">
       <div className="w-fit h-full px-2 flex justify-center items-center bg-red-800">
         <h1>
           <Image

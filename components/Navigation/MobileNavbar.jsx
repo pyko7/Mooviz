@@ -24,7 +24,7 @@ const MobileNavbar = ({ isOpen, setIsOpen }) => {
                     leave="ease-in duration-500"
                     leaveFrom="translate-x-0"
                     leaveTo="translate-x-full"
-                    className='block fixed p-5 right-0 w-60 top-0 min-h-screen bg-white z-50'
+                    className='block fixed  right-0 w-60 top-0 min-h-screen bg-white z-50'
                 >
                     <Transition.Child
                         enter="ease-in-out duration-500 "
@@ -34,14 +34,14 @@ const MobileNavbar = ({ isOpen, setIsOpen }) => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
-                        <Dialog.Panel className='w-full h-full' >
+                        <Dialog.Panel className='w-full h-screen' >
                             {/* nav list translate animation */}
-                            <div className='w-full mb-16 flex justify-end'>
+                            <div className='w-full p-5 mb-16 flex justify-end'>
                                 <XIcon tabIndex="0" className='w-9 h-9 text-secondary' aria-label="Close navigation modal" onClick={() => setIsOpen(false)} />
                             </div>
 
                             <nav className='w-full px-3'>
-                                <ul className='w-full flex flex-col gap-y-6 items-start text-secondary font-semibold text-lg'>
+                                <ul className='w-full flex flex-col gap-y-6 items-start text-secondary font-semibold text-base'>
                                     <li>Home</li>
                                     <li>Movies</li>
                                     <li>Series <em>(Soon available)</em></li>

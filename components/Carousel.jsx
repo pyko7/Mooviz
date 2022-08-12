@@ -36,13 +36,13 @@ const Carousel = ({ movie }) => {
       <div className={`whitespace-nowrap duration-1000 ease-in rounded-b-xl`} style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }} >
         {movie.map((movie, index) => {
           return (
-            <div key={index} className="relative inline-block w-full">
+            <div key={index} className="relative inline-block w-full ">
               <div className="relative w-full h-[600px] overflow-hidden rounded-b-xl xl:h-[550px] lg:h-[450px] md:h-80 sm:h-72 ">
                 <Image src={thor} layout="fill" objectFit="cover" priority alt={movie.title} />
               </div>
-              <div className="absolute bottom-0 w-full h-32 py-2 flex flex-col items-center justify-center gap-y-2 text-white bg-black/90 rounded-b-xl text-center whitespace-normal overflow-ellipsis md:rounded-none sm:h-28">
-                <h2 className="w-11/12 text-3xl font-bold line-clamp-1 xl:w-4/5 sm:text-2xl">{movie.title}</h2>
-                <p className="w-4/5 max-w-2xl my-0 mx-auto line-clamp-2 sm:w-5/6 sm:text-sm ">
+              <div className="absolute bottom-0 w-full h-32 py-2 px-8 flex flex-col items-start justify-center gap-y-2 text-white bg-black/90 rounded-b-xl text-start whitespace-normal overflow-ellipsis md:h-28 md:rounded-none sm:h-28">
+                <h2 className="w-11/12 text-3xl font-bold line-clamp-1 xl:w-4/5 lg:text-xl md:w-11/12 md:text-lg sm:text-lg">{movie.title}</h2>
+                <p className="w-2/3 line-clamp-2 lg:text-md md:text-sm sm:w-5/6 sm:text-xs">
                   {movie.body}
                 </p>
               </div>
@@ -55,12 +55,11 @@ const Carousel = ({ movie }) => {
         {movie.map((_, idx) => {
           return (
             <div key={idx}
-              className={`inline-block w-5 h-5 rounded-[50%] cursor-pointer bg-red-800 mt-4 mr-3 md:w-4 md:h-4 ${index === idx ? "bg-red-400" : ""}`}
+              className={`inline-block w-5 h-5 rounded-[50%] cursor-pointer bg-red-800 mt-4 mr-3 ${index === idx ? "bg-red-400" : ""} xl:w-4 xl:h-4`}
               onClick={() => { setIndex(idx) }}
             ></div>
           )
         })}
-        <span className="" />
       </div>
     </div>
 
