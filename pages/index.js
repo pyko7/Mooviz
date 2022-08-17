@@ -1,18 +1,18 @@
-import Carousel from "../components/Carousel";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import ComponentsLoader from "../components/Loaders/LoadingSpinner";
+import Carousel from "../components/Carousel";
+import LoadingSpinner from "../components/Loaders/LoadingSpinner";
+import MovieList from "../components/MovieList";
 import {
   getWeeklyPopularMovies,
   getGenresList,
   getMoviesByGenre,
 } from "./api/fetch";
-import { useState } from "react";
-import MovieList from "../components/MovieList";
+import { ChevronRightIcon } from "@heroicons/react/solid";
 
 export default function Home() {
   const [genreId, setGenreId] = useState("");
   const [genreName, setGenreName] = useState(null);
-  // console.log(genreName);
 
   const carouselQuery = useQuery(["carousel"], getWeeklyPopularMovies);
   const genresQuery = useQuery(["genres"], getGenresList);
@@ -21,7 +21,6 @@ export default function Home() {
   );
 
   const handleGenre = (genre) => {
-    console.log(genre);
     if (genre.value === null) {
       setGenreId("");
       setGenreName(null);
@@ -36,7 +35,7 @@ export default function Home() {
     <main className="w-full flex flex-col items-center bg-gray-200 shadow-[inset_0_25px_50px_-12px_rgba(0,0,0,0.25)]">
       <section className="w-full max-w-[1920px] min-h-screen py-10 overflow-x-hidden xl:w-11/12 md:w-full">
         {carouselQuery.isLoading ? (
-          <ComponentsLoader />
+          <LoadingSpinner />
         ) : carouselQuery.isError ? (
           <p className="text-center italic">
             Sorry, an error has occured. Unfortunately, this content isn&apos;t
@@ -75,7 +74,29 @@ export default function Home() {
             )}
           </select>
         </div>
-        <MovieList genre={genreName} movies={popularMoviesByGenre} />
+        <div className="w-full flex flex-col gap-y-6">
+          <div className="w-full flex justify-between items-center uppercase">
+            <h2 className="text-xl tracking-wide font-bold">
+              {genreName === null || genreName === undefined
+                ? "Popular right now"
+                : `${genreName}'s most popular`}
+            </h2>
+            <div className="w-fit flex items-center gap-x-1 font-medium hover:underline">
+              <p>See all</p>
+              <ChevronRightIcon className="w-5 h-5" />
+            </div>
+          </div>
+          {popularMoviesByGenre.isLoading ? (
+            <LoadingSpinner />
+          ) : popularMoviesByGenre.isError ? (
+            <p className="text-center italic">
+              Sorry, an error has occured. Unfortunately, this content
+              isn&apos;t available.
+            </p>
+          ) : (
+            <MovieList movies={popularMoviesByGenre.data.results.slice(0, 6)} />
+          )}
+        </div>
       </section>
     </main>
   );
