@@ -1,14 +1,20 @@
 import SearchBar from "./Searchbar";
+import Link from "next/link";
+
 
 const Navbar = () => {
   return (
     <nav className="w-full flex items-center justify-between ">
       <ul className="w-full flex items-center gap-x-10 font-bold">
         <li>
-          <a>Home</a>
+          <Link href="/">
+            <a>Home</a>
+          </Link>
         </li>
         <li>
-          <a>Movies</a>
+          <Link href="/movies">
+            <a>Movies</a>
+          </Link>
         </li>
         <li>
           <a>
