@@ -1,11 +1,11 @@
-import LoadingMovieCard from "./Loaders/LoadingMovieCard";
+import LoadingSpinner from "./Loaders/LoadingSpinner";
 import MovieCard from "./MovieCard";
 
 const MovieList = ({ movies }) => {
     return (
         <div className="w-full grid grid-cols-6 gap-6 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
             {movies.isLoading ? (
-                <LoadingsCard />
+                <LoadingSpinner />
             ) : movies.isError ? (
                 <p className="text-center italic">
                     Sorry, an error has occured. Unfortunately, this content
@@ -13,9 +13,9 @@ const MovieList = ({ movies }) => {
                 </p>
             ) : (
                 <>
-                    {movies.map((movie) => {
-                        return <MovieCard movie={movie} key={movie.id} />
-                    })}
+                    {movies.map((movie) => (
+                        <MovieCard movie={movie} key={movie.id} />
+                    ))}
                 </>
             )}
         </div>

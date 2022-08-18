@@ -7,7 +7,6 @@ import MovieList from "../../components/MovieList";
 const Movies = () => {
   const genresList = useQuery(["genres"], getGenresList);
   const popularMovies = useQuery(["movies"], getWeeklyPopularMovies);
-  console.log(popularMovies.data);
 
   return (
     <main className="w-full flex flex-col items-center bg-gray-200 shadow-[inset_0_25px_50px_-12px_rgba(0,0,0,0.25)]">
@@ -23,9 +22,9 @@ const Movies = () => {
               Genres
             </h2>
             <div className="w-full grid grid-cols-5 gap-6 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
-              {genresList.data.genres.map((genre) => {
-                return <GenreCard genre={genre} key={genre.id} />;
-              })}
+              {genresList.data.genres.map((genre) => (
+                <GenreCard genre={genre} key={genre.id} />
+              ))}
             </div>
           </div>
         )}
