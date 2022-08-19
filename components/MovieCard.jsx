@@ -4,7 +4,6 @@ import { useState } from "react";
 import { ChevronRightIcon } from "@heroicons/react/solid";
 
 const MovieCard = ({ movie }) => {
-    console.log(movie);
     const [overlay, setOverlay] = useState(0)
 
     const handleOverlay = (itemId) => {

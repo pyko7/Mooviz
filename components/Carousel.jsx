@@ -1,5 +1,5 @@
 import Image from "next/image";
-import thor from "../public/assets/thor.jpg";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Carousel = ({ movies }) => {
@@ -20,19 +20,24 @@ const Carousel = ({ movies }) => {
 
   return (
     //Carousel
+
     <div className="w-2/3 my-0 mx-auto overflow-hidden rounded-xl xl:w-full md:rounded-none">
       <div className={`whitespace-nowrap duration-1000 ease-in rounded-b-xl`} style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }} >
         {moviesList.map((movie, index) => {
           return (
-            <div key={index} className="relative inline-block w-full ">
-              <div className="relative w-full h-[600px] overflow-hidden rounded-b-xl xl:h-[550px] lg:h-[450px] md:h-80 sm:h-72 ">
-                <Image src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} layout="fill" objectFit="cover" priority alt={movie.title} />
-              </div>
-              <div className="absolute bottom-0 w-full h-32 py-2 px-8 flex flex-col items-center justify-center gap-y-2 text-white bg-black/90 rounded-b-xl text-start whitespace-normal overflow-ellipsis md:h-28 md:rounded-none sm:h-28">
-                <h2 className="w-full text-3xl text-center font-bold line-clamp-1 xl:w-4/5 lg:text-xl md:w-11/12 md:text-lg sm:text-lg">{movie.title}</h2>
-                <p className="w-2/3 line-clamp-2 lg:text-md md:text-sm sm:w-5/6 sm:text-xs">{movie.overview}</p>
-              </div>
-            </div>
+            <Link href={`/movies/${movie.id}`} key={index}>
+              <a>
+                <div className="relative inline-block w-full ">
+                  <div className="relative w-full h-[600px] overflow-hidden rounded-b-xl xl:h-[550px] lg:h-[450px] md:h-80 sm:h-72 ">
+                    <Image src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} layout="fill" objectFit="cover" priority alt={movie.title} />
+                  </div>
+                  <div className="absolute bottom-0 w-full h-32 py-2 px-8 flex flex-col items-center justify-center gap-y-2 text-white bg-black/90 rounded-b-xl text-start whitespace-normal overflow-ellipsis md:h-28 md:rounded-none sm:h-28">
+                    <h2 className="w-full text-3xl text-center font-bold line-clamp-1 xl:w-4/5 lg:text-xl md:w-11/12 md:text-lg sm:text-lg">{movie.title}</h2>
+                    <p className="w-2/3 line-clamp-2 lg:text-md md:text-sm sm:w-5/6 sm:text-xs">{movie.overview}</p>
+                  </div>
+                </div>
+              </a>
+            </Link>
           )
         })}
       </div>

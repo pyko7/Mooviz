@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
 import Carousel from "../components/Carousel";
 import LoadingSpinner from "../components/Loaders/LoadingSpinner";
 import MovieList from "../components/MovieList";
@@ -11,7 +12,7 @@ import {
 import { ChevronRightIcon } from "@heroicons/react/solid";
 
 export default function Home() {
-  const [genreId, setGenreId] = useState("");
+  const [genreId, setGenreId] = useState(null);
   const [genreName, setGenreName] = useState(null);
 
   const carouselQuery = useQuery(["carousel"], getWeeklyPopularMovies);
@@ -22,14 +23,16 @@ export default function Home() {
 
   const handleGenre = (genre) => {
     if (genre.value === null) {
-      setGenreId("");
+      setGenreId(null);
       setGenreName(null);
+      return;
     } else {
       setGenreId(genre.id);
       setGenreName(genre.name);
     }
     popularMoviesByGenre.refetch();
   };
+  console.log(genreId);
 
   return (
     <main className="w-full flex flex-col items-center bg-gray-200 shadow-[inset_0_25px_50px_-12px_rgba(0,0,0,0.25)]">
@@ -81,10 +84,21 @@ export default function Home() {
                 ? "Popular right now"
                 : `${genreName}'s most popular`}
             </h2>
-            <div className="w-fit flex items-center gap-x-1 font-medium hover:underline">
-              <p>See all</p>
-              <ChevronRightIcon className="w-5 h-5" />
-            </div>
+            {genreId === null || genreId === undefined ? (
+              <Link href={`/movies`}>
+                <a className="w-fit flex items-center gap-x-1 font-medium hover:underline">
+                  <p>See all</p>
+                  <ChevronRightIcon className="w-5 h-5" />
+                </a>
+              </Link>
+            ) : (
+              <Link href={`/movies/genre/${genreId}`}>
+                <a className="w-fit flex items-center gap-x-1 font-medium hover:underline">
+                  <p>See all</p>
+                  <ChevronRightIcon className="w-5 h-5" />
+                </a>
+              </Link>
+            )}
           </div>
           {popularMoviesByGenre.isLoading ? (
             <LoadingSpinner />

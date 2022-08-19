@@ -18,7 +18,7 @@ const MovieListByGenre = () => {
       <section className="w-full max-w-[1920px] py-10 overflow-x-hidden xl:w-11/12 md:w-full">
         <div className="w-full px-20">
           <h2 className="mb-8 text-xl tracking-wide uppercase font-bold">
-            {genreName}'s most popular this week
+            {genreName}&apos;s most popular this week
           </h2>
           {isLoading ? (
             <LoadingSpinner />
