@@ -29,11 +29,11 @@ const Carousel = ({ movies }) => {
               <a>
                 <div className="relative inline-block w-full ">
                   <div className="relative w-full h-[600px] overflow-hidden rounded-b-xl xl:h-[550px] lg:h-[450px] md:h-80 sm:h-72 ">
-                    <Image src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} layout="fill" objectFit="cover" priority alt={movie.title} />
+                    <Image src={`https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`} layout="fill" objectFit="cover" priority alt={movie.title} />
                   </div>
                   <div className="absolute bottom-0 w-full h-32 py-2 px-8 flex flex-col items-center justify-center gap-y-2 text-white bg-black/90 rounded-b-xl text-start whitespace-normal overflow-ellipsis md:h-28 md:rounded-none sm:h-28">
                     <h2 className="w-full text-3xl text-center font-bold line-clamp-1 xl:w-4/5 lg:text-xl md:w-11/12 md:text-lg sm:text-lg">{movie.title}</h2>
-                    <p className="w-2/3 line-clamp-2 lg:text-md md:text-sm sm:w-5/6 sm:text-xs">{movie.overview}</p>
+                    <p className="w-2/3 max-w-xl line-clamp-2 lg:text-base md:w-4/5 md:max-w-none md:text-sm sm:w-5/6 sm:text-sm">{movie.overview}</p>
                   </div>
                 </div>
               </a>
@@ -42,11 +42,11 @@ const Carousel = ({ movies }) => {
         })}
       </div>
 
-      <div className="text-center">
+      <div className="w-full flex mt-4 items-center justify-center gap-x-3">
         {moviesList.map((_, idx) =>
         (
           <div key={idx}
-            className={`inline-block w-5 h-5 rounded-[50%] cursor-pointer bg-red-800 mt-4 mr-3 ${index === idx ? "bg-red-400" : ""} xl:w-4 xl:h-4`}
+            className={`inline-block w-5 h-5 rounded-[50%] cursor-pointer bg-red-800 ${index === idx ? "bg-red-400" : ""} `}
             onClick={() => { setIndex(idx) }}
           ></div>
         )

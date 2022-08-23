@@ -1,5 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline';
+import Link from 'next/link';
 
 const MobileNavbar = ({ isOpen, setIsOpen }) => {
 
@@ -42,12 +43,19 @@ const MobileNavbar = ({ isOpen, setIsOpen }) => {
 
                             <nav className='w-full px-3'>
                                 <ul className='w-full flex flex-col gap-y-6 items-start text-secondary font-semibold text-base'>
-                                    <li>Home</li>
-                                    <li>Movies</li>
+                                    <Link href="/">
+                                        <a onClick={() => setIsOpen(false)}>
+                                            <li>Home</li>
+                                        </a>
+                                    </Link>
+                                    <Link href="/movies">
+                                        <a onClick={() => setIsOpen(false)}>
+                                            <li>Movies</li>
+                                        </a>
+                                    </Link>
+
                                     <li>Series <em>(Soon available)</em></li>
-                                    {/* <li><a href="/" onClick={() => setIsOpen(false)}>Home</a></li>
-                                    <li><a href="/" onClick={() => setIsOpen(false)}>Movies</a></li>
-                                    <li><a href='/' onClick={() => setIsOpen(false)}>Series <em>(Soon available)</em></a></li> */}
+
                                 </ul>
                             </nav>
                         </Dialog.Panel>

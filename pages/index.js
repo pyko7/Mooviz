@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
 import Carousel from "../components/Carousel";
 import LoadingSpinner from "../components/Loaders/LoadingSpinner";
 import MovieList from "../components/MovieList";
@@ -32,11 +32,10 @@ export default function Home() {
     }
     popularMoviesByGenre.refetch();
   };
-  console.log(genreId);
 
   return (
-    <main className="w-full flex flex-col items-center bg-gray-200 shadow-[inset_0_25px_50px_-12px_rgba(0,0,0,0.25)]">
-      <section className="w-full max-w-[1920px] min-h-screen py-10 overflow-x-hidden xl:w-11/12 md:w-full">
+    <>
+      <section className="w-full max-w-[1920px] py-10 overflow-x-hidden xl:w-11/12 md:w-full">
         {carouselQuery.isLoading ? (
           <LoadingSpinner />
         ) : carouselQuery.isError ? (
@@ -48,7 +47,7 @@ export default function Home() {
           <Carousel movies={carouselQuery.data} />
         )}
       </section>
-      <section className="w-full max-w-[1920px] py-10 px-14 flex flex-col gap-y-10 overflow-x-hidden  xl:w-11/12 md:w-full">
+      <section className="w-full max-w-[1920px] py-10 px-14 flex flex-col gap-y-10 overflow-x-hidden xl:w-11/12 md:w-full md:px-8">
         <div>
           <select
             name="genres"
@@ -77,25 +76,25 @@ export default function Home() {
             )}
           </select>
         </div>
-        <div className="w-full flex flex-col gap-y-6">
-          <div className="w-full flex justify-between items-center uppercase">
-            <h2 className="text-xl tracking-wide font-bold">
+        <div className="w-full flex flex-col gap-y-6 ">
+          <div className="w-full flex justify-between items-center uppercase sm:gap-x-4 sm:flex-wrap">
+            <h2 className="text-xl tracking-wide font-bold sm:text-lg">
               {genreName === null || genreName === undefined
                 ? "Popular right now"
                 : `${genreName}'s most popular`}
             </h2>
             {genreId === null || genreId === undefined ? (
               <Link href={`/movies`}>
-                <a className="w-fit flex items-center gap-x-1 font-medium hover:underline">
+                <a className="w-fit flex items-center gap-x-1 font-medium hover:underline sm:text-lg">
                   <p>See all</p>
-                  <ChevronRightIcon className="w-5 h-5" />
+                  <ChevronRightIcon aria-hidden="true" className="w-5 h-5" />
                 </a>
               </Link>
             ) : (
               <Link href={`/movies/genre/${genreId}`}>
-                <a className="w-fit flex items-center gap-x-1 font-medium hover:underline">
+                <a className="w-fit flex items-center gap-x-1 font-medium hover:underline sm:text-lg">
                   <p>See all</p>
-                  <ChevronRightIcon className="w-5 h-5" />
+                  <ChevronRightIcon aria-hidden="true" className="w-5 h-5" />
                 </a>
               </Link>
             )}
@@ -112,6 +111,6 @@ export default function Home() {
           )}
         </div>
       </section>
-    </main>
+    </>
   );
 }

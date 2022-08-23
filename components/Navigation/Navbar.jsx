@@ -17,14 +17,12 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <a>
-            Series <em>(Soon available)</em>
-          </a>
+          Series <em>(Soon available)</em>
         </li>
       </ul>
-      <div className="w-80 h-10 rounded-md bg-gray-200">
+      {/* <div className="w-80 h-10 rounded-md bg-gray-200">
         <SearchBar />
-      </div>
+      </div> */}
     </nav>
   );
 };

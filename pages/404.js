@@ -1,0 +1,23 @@
+import Link from "next/link";
+import { HomeIcon } from "@heroicons/react/outline";
+
+const Custom404 = () => {
+  return (
+    <section className="w-full min-h-screen flex flex-col justify-center items-center gap-y-4">
+      <h1 className="text-9xl font-bold">Oops</h1>
+      <p className="mt-8 text-4xl">Page not found</p>
+      <p className="text-2xl">
+        The page you are looking for does not exist. It might have been moved or
+        deleted.
+      </p>
+      <Link href="/">
+        <a className="w-fit mt-8 px-6 py-3 flex items-center gap-x-1 bg-red-800 text-white rounded-lg text-xl hover:bg-red-700">
+          <HomeIcon className="w-5 h-5" />
+          Home
+        </a>
+      </Link>
+    </section>
+  );
+};
+
+export default Custom404;
