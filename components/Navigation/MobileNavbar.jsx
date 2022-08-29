@@ -1,6 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
+import ThemeModal from '../ThemeModal';
 
 const MobileNavbar = ({ isOpen, setIsOpen }) => {
 
@@ -25,7 +26,7 @@ const MobileNavbar = ({ isOpen, setIsOpen }) => {
                     leave="ease-in duration-500"
                     leaveFrom="translate-x-0"
                     leaveTo="translate-x-full"
-                    className='block fixed  right-0 w-60 top-0 min-h-screen bg-white z-50'
+                    className='block fixed  right-0 w-60 top-0 min-h-screen bg-white dark:bg-neutral-800 dark:text-white z-50'
                 >
                     <Transition.Child
                         enter="ease-in-out duration-500 "
@@ -57,6 +58,11 @@ const MobileNavbar = ({ isOpen, setIsOpen }) => {
                                     <li>Series <em>(Soon available)</em></li>
 
                                 </ul>
+                                <div className=' mt-16 flex items-center gap-x-4 text-secondary font-semibold text-base  '>
+                                    <p>Switch theme :</p>
+                                    <ThemeModal />
+                                </div>
+
                             </nav>
                         </Dialog.Panel>
                     </Transition.Child>

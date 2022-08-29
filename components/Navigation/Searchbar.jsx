@@ -35,14 +35,14 @@ const SearchBar = ({ setSearchBar }) => {
                     type="text"
                     id="searchBar"
                     placeholder="Search"
-                    className="w-full h-full px-2 bg-gray-200 outline-none rounded-md placeholder:font-medium"
+                    className="w-full h-full px-2 bg-gray-200 outline-none rounded-md dark:bg-neutral-800 placeholder:font-medium"
                     onChange={(event) => handleInput(event)}
                 />
-                {search && <XCircleIcon aria-label="Close searchbar" className="w-8 h-8 cursor-pointer text-red-800 hover:text-red-600" onClick={() => handleSearch()} />}
+                {search && <XCircleIcon aria-label="Close searchbar" className="w-8 h-8 cursor-pointer text-red-800 dark:text-neutral-200 hover:text-red-600 dark:hover:text-white" onClick={() => handleSearch()} />}
             </div>
 
             {search &&
-                <section className="absolute top-24 left-0 w-full min-h-screen flex justify-center py-10 px-8 z-50 bg-gray-600 shadow-[inset_0_25px_50px_-12px_rgba(0,0,0,0.35)] xl:top-20">
+                <section className="absolute top-24 left-0 w-full min-h-screen flex justify-center py-10 px-8 z-50 bg-gray-600 shadow-[inset_0_25px_50px_-12px_rgba(0,0,0,0.35)] dark:bg-neutral-700 dark:shadow-[inset_0_25px_50px_-12px_rgba(58,58,58,0.25)] xl:top-20">
                     {isLoading ? <LoadingSpinner />
                         : isError ?
                             <p className="text-center italic">

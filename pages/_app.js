@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Layout from "../components/Layout";
+import { ThemeProvider } from "../context/themeContext";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
@@ -10,11 +11,14 @@ function MyApp({ Component, pageProps }) {
       },
     },
   });
+
   return (
     <QueryClientProvider client={queryClient}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <ThemeProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

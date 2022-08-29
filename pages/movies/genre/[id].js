@@ -35,7 +35,7 @@ const MovieListByGenre = () => {
         </Head>
       )}
       <section className="w-full max-w-[1920px] py-10 overflow-x-hidden xl:w-11/12 md:w-full">
-        <div className="w-full px-20 md:px-14 sm:px-12">
+        <div className="w-full px-20 dark:text-white md:px-14 sm:px-12">
           <h2 className="mb-8 text-xl tracking-wide uppercase font-bold xl:mb-0 sm:mb-4 sm:text-lg">
             {genreName}&apos;s most popular this week
           </h2>

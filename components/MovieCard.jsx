@@ -32,9 +32,9 @@ const MovieCard = ({ movie, search }) => {
                     <div className="w-full h-full flex flex-col lg:gap-y-4">
                         <div className="relative w-full h-[300px] overflow-hidden rounded-xl">
                             {movie.poster_path !== null ?
-                                <Image src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} layout="fill" objectFit="contain" priority alt={movie.title} />
+                                <Image src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`} layout="fill" sizes="(min-width: 75em) 33vw, (min-width: 48em) 50vw, 100vw" objectFit="contain" priority alt={movie.title} />
                                 :
-                                <Image src={defaultPoster} layout="fill" objectFit="contain" priority alt={movie.title} />
+                                <Image src={defaultPoster} layout="fill" sizes="(min-width: 75em) 33vw, (min-width: 48em) 50vw, 100vw" objectFit="contain" priority alt={movie.title} />
                             }
                         </div>
                         <div className="hidden lg:flex lg:w-full lg:h-full lg:flex-col lg:gap-y-4">

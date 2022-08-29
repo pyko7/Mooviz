@@ -65,7 +65,7 @@ const MovieById = () => {
             </div>
           )}
         </div>
-        <div className="w-full px-20 lg:px-6">
+        <div className="w-full px-20 dark:text-white lg:px-6">
           {similarMovies.isLoading ? (
             <LoadingSpinner />
           ) : similarMovies.isError ? (

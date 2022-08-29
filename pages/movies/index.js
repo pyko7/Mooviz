@@ -33,14 +33,13 @@ const Movies = () => {
         />
       </Head>
 
-      <section className="w-full max-w-[1920px] py-10 overflow-x-hidden xl:w-11/12 md:w-full">
+      <section className="w-full max-w-[1920px] py-10 overflow-x-hidden dark:text-white xl:w-11/12 md:w-full">
         {genresList.isLoading ? (
           <LoadingSpinner />
         ) : genresList.isError ? (
           <h1>Error</h1>
         ) : (
           <div className="w-full px-20 lg:px-8 md:px-14 sm:px-12">
-            {/* flex col reverse for md/sm ? */}
             <div
               className="w-fit mb-8 flex items-center gap-x-2"
               onClick={() => handleDisplayList()}
@@ -69,7 +68,7 @@ const Movies = () => {
         )}
       </section>
 
-      <section className="w-full max-w-[1920px] py-10 overflow-x-hidden xl:w-11/12 md:w-full">
+      <section className="w-full max-w-[1920px] py-10 overflow-x-hidden dark:text-white xl:w-11/12 md:w-full">
         <div className="w-full px-20 lg:px-8 md:px-14 sm:px-12">
           <h2 className="mb-8 text-xl tracking-wide uppercase font-bold sm:text-lg">
             The most popular this week

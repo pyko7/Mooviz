@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -22,10 +23,9 @@ export default function Home() {
   );
 
   const handleGenre = (genre) => {
-    if (genre.value === null) {
+    if (genre.value === null || genre.name === undefined) {
       setGenreId(null);
       setGenreName(null);
-      return;
     } else {
       setGenreId(genre.id);
       setGenreName(genre.name);
@@ -52,7 +52,7 @@ export default function Home() {
           <select
             name="genres"
             id="genres"
-            className="p-2 rounded-[4px] font-medium bg-white shadow-md"
+            className="p-2 rounded-[4px] font-medium bg-white shadow-md dark:bg-neutral-400"
           >
             {genresQuery.isLoading || genresQuery.isFetching ? (
               <option value="Loading">Loading...</option>
@@ -76,14 +76,14 @@ export default function Home() {
             )}
           </select>
         </div>
-        <div className="w-full flex flex-col gap-y-6 ">
+        <div className="w-full flex flex-col gap-y-6 dark:text-white">
           <div className="w-full flex justify-between items-center uppercase sm:gap-x-4 sm:flex-wrap">
             <h2 className="text-xl tracking-wide font-bold sm:text-lg">
-              {genreName === null || genreName === undefined
+              {genreName === null
                 ? "Popular right now"
                 : `${genreName}'s most popular`}
             </h2>
-            {genreId === null || genreId === undefined ? (
+            {genreId === null ? (
               <Link href={`/movies`}>
                 <a className="w-fit flex items-center gap-x-1 font-medium hover:underline sm:text-lg">
                   <p>See all</p>
@@ -91,7 +91,13 @@ export default function Home() {
                 </a>
               </Link>
             ) : (
-              <Link href={`/movies/genre/${genreId}`}>
+              <Link
+                href={{
+                  pathname: "/movies/genre/[id]",
+                  query: { id: genreId, name: genreName },
+                }}
+                as={`/movies/genre/${genreId}`}
+              >
                 <a className="w-fit flex items-center gap-x-1 font-medium hover:underline sm:text-lg">
                   <p>See all</p>
                   <ChevronRightIcon aria-hidden="true" className="w-5 h-5" />

@@ -8,7 +8,7 @@ const GenreCard = ({ genre }) => {
         }}
             as={`/movies/genre/${genre.id}`}>
             <a>
-                <article className="h-20 rounded-xl bg-red-800 text-white hover:bg-red-800/75" key={genre.id} >
+                <article className="h-20 rounded-xl bg-red-800 text-white dark:bg-neutral-600 hover:bg-red-800/75 dark:hover:bg-neutral-500" key={genre.id} >
                     <div className="w-full h-full flex items-center justify-center font-medium">
                         <h3>{genre.name}</h3>
                     </div>
