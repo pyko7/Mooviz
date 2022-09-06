@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react";
-import defaultPoster from "../public/assets/default_movie.webp"
+import defaultPoster from "../../public/assets/default_movie.webp"
 
 const MovieCard = ({ movie, search }) => {
     const [overlay, setOverlay] = useState(0)
@@ -17,7 +17,7 @@ const MovieCard = ({ movie, search }) => {
         }}
             as={`/movies/${movie.id}`}
         >
-            <a>
+            <a aria-label={movie.title}>
                 <article className="relative" onMouseOver={() => setOverlay(movie.id)} onMouseOut={() => setOverlay(0)} onClick={() => handleOverlay(movie.id)} >
                     <>
                         {overlay === movie.id ?
