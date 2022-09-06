@@ -18,8 +18,8 @@ const Header = () => {
     <header className="w-full max-w-[1920px] my-0 mx-auto h-24 px-20 flex items-center justify-start gap-x-20 dark:bg-neutral-900 dark:text-white xl:h-20 xl:justify-between lg:px-12 md:gap-x-0 md:px-4 sm:px-4">
       <div className="w-fit h-full px-2 flex justify-center items-center bg-red-800 dark:bg-neutral-600 ">
         <Link href="/">
-          <a>
-            <h1>
+          <a aria-label="Home">
+            <h1 aria-hidden="true">
               <Image
                 src={logo}
                 width={40}

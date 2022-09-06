@@ -1,8 +1,8 @@
 import { SearchIcon } from "@heroicons/react/solid";
 import { XCircleIcon } from "@heroicons/react/solid";
 import { useQuery } from "@tanstack/react-query";
-import { getMoviesBySearchBar } from "../../pages/api/fetch";
-import LoadingSpinner from "../../components/Loaders/LoadingSpinner";
+import { getMoviesBySearchBar } from "../../utils/fetch";
+import LoadingSpinner from "../Loaders/LoadingSpinner";
 import { useState } from "react";
 import MovieList from "../MovieList";
 
@@ -20,6 +20,7 @@ const SearchBar = ({ setSearchBar }) => {
     }
 
     const handleSearch = () => {
+        /*input value*/
         searchBar.value = '';
         setSearch(null);
         return setSearchBar ? setSearchBar(null) : null;
@@ -35,7 +36,7 @@ const SearchBar = ({ setSearchBar }) => {
                     type="text"
                     id="searchBar"
                     placeholder="Search"
-                    className="w-full h-full px-2 bg-gray-200 outline-none rounded-md dark:bg-neutral-800 placeholder:font-medium"
+                    className="w-full h-full px-2 bg-gray-200 outline-none rounded-md dark:bg-neutral-800 placeholder:font-medium focus-visible:outline focus-visible:outline-red-500"
                     onChange={(event) => handleInput(event)}
                 />
                 {search && <XCircleIcon aria-label="Close searchbar" className="w-8 h-8 cursor-pointer text-red-800 dark:text-neutral-200 hover:text-red-600 dark:hover:text-white" onClick={() => handleSearch()} />}

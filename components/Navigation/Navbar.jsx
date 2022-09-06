@@ -1,6 +1,4 @@
-import SearchBar from "./Searchbar";
 import Link from "next/link";
-
 
 const Navbar = () => {
   return (
@@ -20,9 +18,6 @@ const Navbar = () => {
           Series <em>(Soon available)</em>
         </li>
       </ul>
-      {/* <div className="w-80 h-10 rounded-md bg-gray-200">
-        <SearchBar />
-      </div> */}
     </nav>
   );
 };

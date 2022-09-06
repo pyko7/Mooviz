@@ -4,7 +4,7 @@ import { ThemeContext } from "../context/ThemeContext";
 import { Menu } from '@headlessui/react'
 import { SunIcon } from '@heroicons/react/outline';
 import { MoonIcon } from '@heroicons/react/solid';
-import { useLoaded } from "./useLoaded";
+import { useLoaded } from "../hooks/useLoaded";
 
 const ThemeModal = () => {
     const { theme, setTheme } = useContext(ThemeContext)
