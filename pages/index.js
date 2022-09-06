@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import Carousel from "../components/Carousel";
 import LoadingSpinner from "../components/Loaders/LoadingSpinner";
 import MovieList from "../components/MovieList";
@@ -8,8 +8,18 @@ import {
   getWeeklyPopularMovies,
   getGenresList,
   getMoviesByGenre,
-} from "./api/fetch";
+} from "../utils/fetch";
 import { ChevronRightIcon } from "@heroicons/react/solid";
+
+export async function getServerSideProps() {
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(["carousel"], getWeeklyPopularMovies);
+  await queryClient.prefetchQuery(["genres"], getGenresList);
+
+  return {
+    props: { dehydratedState: dehydrate(queryClient) },
+  };
+}
 
 export default function Home() {
   const [genreId, setGenreId] = useState(null);

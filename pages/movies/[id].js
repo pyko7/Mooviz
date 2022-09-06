@@ -1,9 +1,25 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useQuery } from "@tanstack/react-query";
-import { getMovieById, getSimilarMovies } from "../api/fetch";
+import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
+import { getMovieById, getSimilarMovies } from "../../utils/fetch";
 import LoadingSpinner from "../../components/Loaders/LoadingSpinner";
 import MovieList from "../../components/MovieList";
+
+export async function getServerSideProps(context) {
+  const queryClient = new QueryClient();
+  const movieId = context.params.id;
+  await queryClient.prefetchQuery(["movie", movieId], () =>
+    getMovieById(movieId)
+  );
+  await queryClient.prefetchQuery(["movies", movieId], () =>
+    getSimilarMovies(movieId)
+  );
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}
 
 const MovieById = () => {
   const router = useRouter();
