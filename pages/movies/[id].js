@@ -21,6 +21,9 @@ export async function getServerSideProps(context) {
   await queryClient.prefetchQuery(["movies", movieId], () =>
     getSimilarMovies(movieId)
   );
+  await queryClient.prefetchQuery(["credits", movieId], () =>
+    getMoviesCredits(movieId)
+  );
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
