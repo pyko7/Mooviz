@@ -3,7 +3,7 @@ import ActorCard from "../Cards/ActorCard";
 
 const ActorList = ({ actors }) => {
     return (
-        <div className="w-full grid grid-cols-6 xl:grid-cols-4 lg:grid-cols-3 lg:gap-y-14 md:grid-cols-2 sm:gap-y-4" >
+        <div className="w-full grid grid-cols-6 xl:grid-cols-4 lg:grid-cols-3  lg:gap-y-14 md:grid-cols-2 sm:gap-y-4" >
             {actors.isLoading ? (
                 <LoadingSpinner />
             ) : actors.isError ? (

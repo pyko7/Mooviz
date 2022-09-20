@@ -3,7 +3,7 @@ import defaultPoster from "../../public/assets/default_movie.webp"
 
 const ActorCard = ({ actor }) => {
     return (
-        <article className="w-3/4 p-4 rounded-xl shadow-lg dark:shadow-white/10 md:mx-auto md:my-0 sm:w-full">
+        <article className="w-3/4 min-w-[175px] lg:min-w-0 p-4 rounded-xl shadow-lg dark:shadow-white/10 lg:my-0 lg:mx-auto sm:w-full">
             <div className="w-full h-full flex flex-col lg:gap-y-4">
                 <div className="relative w-full h-[200px] overflow-hidden rounded-t-xl md:h-[215px] sm:h-[200px]">
                     {actor.profile_path !== null ?
