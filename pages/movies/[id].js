@@ -48,17 +48,6 @@ const MovieById = () => {
   const movieRuntimeHours = Math.floor(movie?.runtime / 60);
   const movieRuntimeMinutes = movie?.runtime % 60;
 
-  const getconfig = async () => {
-    const res = await fetch(
-      "https://api.themoviedb.org/3/configuration?api_key=1572fc5392807a01e4a54adcabbdf12d"
-    );
-    const data = await res.json();
-    console.log(data);
-    return data;
-  };
-
-  getconfig();
-
   return (
     <>
       {movie && (
