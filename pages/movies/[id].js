@@ -135,7 +135,7 @@ const MovieById = () => {
             </div>
           )}
         </div>
-        <div>
+        <div className="w-full px-20 lg:px-6">
           <h3 className="text-2xl font-bold mb-3 tracking-wide uppercase dark:text-white">
             Cast
           </h3>

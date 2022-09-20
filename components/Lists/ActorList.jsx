@@ -2,9 +2,8 @@ import LoadingSpinner from "../Loaders/LoadingSpinner";
 import ActorCard from "../Cards/ActorCard";
 
 const ActorList = ({ actors }) => {
-    console.log(actors.data);
     return (
-        <div className="w-full p-1 grid grid-cols-6 gap-6 xl:grid-cols-4 lg:grid-cols-3 lg:gap-y-14 md:grid-cols-2 sm:grid-cols-1" >
+        <div className="w-full grid grid-cols-6 xl:grid-cols-4 lg:grid-cols-3 lg:gap-y-14 md:grid-cols-2 sm:gap-y-4" >
             {actors.isLoading ? (
                 <LoadingSpinner />
             ) : actors.isError ? (

@@ -3,9 +3,9 @@ import defaultPoster from "../../public/assets/default_movie.webp"
 
 const ActorCard = ({ actor }) => {
     return (
-        <article className="w-3/4 p-4 rounded-xl shadow-lg dark:shadow-white/10">
+        <article className="w-3/4 p-4 rounded-xl shadow-lg dark:shadow-white/10 md:mx-auto md:my-0 sm:w-full">
             <div className="w-full h-full flex flex-col lg:gap-y-4">
-                <div className="relative w-full h-[200px] overflow-hidden rounded-t-xl">
+                <div className="relative w-full h-[200px] overflow-hidden rounded-t-xl md:h-[215px] sm:h-[200px]">
                     {actor.profile_path !== null ?
                         <Image src={`https://image.tmdb.org/t/p/h632/${actor.profile_path}`} layout="fill" sizes="(min-width: 75em) 33vw, (min-width: 48em) 50vw, 100vw" objectFit="cover" objectPosition="0% 0%" priority alt={actor.name} />
                         :
