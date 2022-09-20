@@ -4,7 +4,7 @@ import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import { getGenresList, getWeeklyPopularMovies } from "../../utils/fetch";
 import GenreCard from "../../components/Cards/GenreCard";
 import LoadingSpinner from "../../components//Loaders/LoadingSpinner";
-import MovieList from "../../components/MovieList";
+import MovieList from "../../components/Lists/MovieList";
 import { ChevronRightIcon } from "@heroicons/react/solid";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 

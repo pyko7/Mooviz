@@ -3,7 +3,7 @@ import { useState } from "react";
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import Carousel from "../components/Carousel";
 import LoadingSpinner from "../components/Loaders/LoadingSpinner";
-import MovieList from "../components/MovieList";
+import MovieList from "../components/Lists/MovieList";
 import {
   getWeeklyPopularMovies,
   getGenresList,

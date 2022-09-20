@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getMoviesBySearchBar } from "../../utils/fetch";
 import LoadingSpinner from "../Loaders/LoadingSpinner";
 import { useState } from "react";
-import MovieList from "../MovieList";
+import MovieList from "../Lists/MovieList";
 
 const SearchBar = ({ setSearchBar }) => {
     const [search, setSearch] = useState(null)

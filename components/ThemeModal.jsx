@@ -11,7 +11,7 @@ const ThemeModal = () => {
     const loaded = useLoaded();
 
     return (
-        <Menu as="div" className="relative inline-block text-left text-black " >
+        <Menu as="div" className="relative inline-block text-left text-black z-50" >
             <Menu.Button aria-label="theme">{loaded && theme === "light" ? <SunIcon className="w-8 h-8" /> : <MoonIcon className="w-8 h-8 text-neutral-200" />} </Menu.Button>
             <Menu.Items className="absolute left-0 top-10 w-40 flex flex-col gap-y-1 rounded-md bg-white shadow-xl  dark:bg-neutral-200 lg:-left-32 lg:top-12 ">
                 <Menu.Item className={`w-full h-full px-4 py-2 flex items-center gap-x-2 hover:bg-gray-100 hover:rounded-b-md ${theme === "light" ? "text-red-600" : ""} `} onClick={() => setTheme("light")}>

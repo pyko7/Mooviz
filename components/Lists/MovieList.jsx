@@ -1,5 +1,5 @@
-import LoadingSpinner from "./Loaders/LoadingSpinner";
-import MovieCard from "./Cards/MovieCard";
+import LoadingSpinner from "../Loaders/LoadingSpinner";
+import MovieCard from "../Cards/MovieCard";
 
 const MovieList = ({ movies, search, removeSearch }) => {
 
