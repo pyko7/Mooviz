@@ -1,7 +1,8 @@
+import { ChildrenProps } from "@/types/context";
 import Head from "next/head";
 import Header from "./Navigation/Header";
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: ChildrenProps) => {
   return (
     <>
       <Head>
@@ -21,12 +22,10 @@ const Layout = ({ children }) => {
         />
       </Head>
 
-      <div className="content dark:bg-neutral-900">
-        <Header />
-        <main className="w-full flex flex-col items-center bg-gray-200  dark:bg-neutral-800 dark:shadow-[inset_0_25px_50px_-12px_rgba(58,58,58,0.25)]">
-          {children}
-        </main>
-      </div>
+      <Header />
+      <main className="w-full flex flex-col items-center bg-neutral-800 text-neutral-100 shadow-[inset_0_25px_50px_-12px_rgba(58,58,58,0.25)]">
+        {children}
+      </main>
     </>
   );
 };

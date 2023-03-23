@@ -1,22 +1,9 @@
 import { useRouter } from "next/router";
-import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Head from "next/head";
-import { getMoviesByGenre } from "../../../utils/fetch";
-import MovieList from "../../../components/Lists/MovieList";
-import LoadingSpinner from "../../../components/Loaders/LoadingSpinner";
-
-export async function getServerSideProps(context) {
-  const queryClient = new QueryClient();
-  const genreId = context.params.id;
-  await queryClient.prefetchQuery(["genres", genreId], () =>
-    getMoviesByGenre(genreId)
-  );
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}
+import { getMoviesByGenre } from "@/utils/getMoviesByGenre";
+import MovieList from "@/components/Lists/MovieList";
+import LoadingSpinner from "@/components/Loaders/LoadingSpinner";
 
 const MovieListByGenre = () => {
   const router = useRouter();
@@ -26,7 +13,7 @@ const MovieListByGenre = () => {
   const { isLoading, isError, data } = useQuery(["genres", genreId], () =>
     getMoviesByGenre(genreId)
   );
-  
+
   /**
    * In case of refresh, page title and h2 don't have the right value anymore due to inexistant query
    */

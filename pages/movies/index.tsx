@@ -1,23 +1,13 @@
 import { useState } from "react";
 import Head from "next/head";
-import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
-import { getGenresList, getWeeklyPopularMovies } from "../../utils/fetch";
+import { useQuery } from "@tanstack/react-query";
+import { getGenresList } from "@/utils/getGenresList";
+import { getWeeklyPopularMovies } from "@/utils/getWeeklyPopularMovies";
 import GenreCard from "../../components/Cards/GenreCard";
-import LoadingSpinner from "../../components//Loaders/LoadingSpinner";
+import LoadingSpinner from "../../components/Loaders/LoadingSpinner";
 import MovieList from "../../components/Lists/MovieList";
-import { ChevronRightIcon } from "@heroicons/react/solid";
-import { ChevronDownIcon } from "@heroicons/react/solid";
-
-export async function getServerSideProps() {
-  const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(["genres"], getGenresList);
-  await queryClient.prefetchQuery(["movies"], getWeeklyPopularMovies);
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}
+import { ChevronRightIcon } from "@heroicons/react/24/solid";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 const Movies = () => {
   const [genres, setGenres] = useState(null);

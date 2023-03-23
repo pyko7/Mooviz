@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { HomeIcon } from "@heroicons/react/outline";
+import { HomeIcon } from "@heroicons/react/24/outline";
 
 const Custom404 = () => {
   return (
@@ -10,11 +10,12 @@ const Custom404 = () => {
         The page you are looking for does not exist. It might have been moved or
         deleted.
       </p>
-      <Link href="/">
-        <a className="w-fit mt-8 px-6 py-3 flex items-center gap-x-1 bg-red-800 text-white rounded-lg text-xl dark:bg-neutral-400 dark:text-black dark:font-medium hover:bg-red-700 dark:hover:bg-neutral-300">
-          <HomeIcon className="w-5 h-5" />
-          Home
-        </a>
+      <Link
+        href="/"
+        className="w-fit mt-8 px-6 py-3 flex items-center gap-x-1 bg-red-800 text-white rounded-lg text-xl dark:bg-neutral-400 dark:text-black dark:font-medium hover:bg-red-700 dark:hover:bg-neutral-300"
+      >
+        <HomeIcon className="w-5 h-5" />
+        Home
       </Link>
     </section>
   );

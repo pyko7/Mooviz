@@ -1,35 +1,14 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
-import {
-  getMovieById,
-  getMoviesCredits,
-  getSimilarMovies,
-} from "../../utils/fetch";
+import { useQuery } from "@tanstack/react-query";
+import { getMovieById } from "@/utils/getMovieById";
+import { getMovieCredits } from "@/utils/getMovieCredits";
+import { getSimilarMovies } from "@/utils/getSimilarMovies";
 import LoadingSpinner from "../../components/Loaders/LoadingSpinner";
 import MovieList from "../../components/Lists/MovieList";
 import ProgressBar from "../../components/ProgressBar";
 import ActorList from "../../components/Lists/ActorList";
-
-export async function getServerSideProps(context) {
-  const queryClient = new QueryClient();
-  const movieId = context.params.id;
-  await queryClient.prefetchQuery(["movie", movieId], () =>
-    getMovieById(movieId)
-  );
-  await queryClient.prefetchQuery(["movies", movieId], () =>
-    getSimilarMovies(movieId)
-  );
-  await queryClient.prefetchQuery(["credits", movieId], () =>
-    getMoviesCredits(movieId)
-  );
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}
 
 const MovieById = () => {
   const router = useRouter();
@@ -41,7 +20,7 @@ const MovieById = () => {
     data: movie,
   } = useQuery(["movie", movieId], () => getMovieById(movieId));
   const credits = useQuery(["credits", movieId], () =>
-    getMoviesCredits(movieId)
+    getMovieCredits(movieId)
   );
   const similarMovies = useQuery(["movies", movieId], () =>
     getSimilarMovies(movieId)
@@ -97,8 +76,9 @@ const MovieById = () => {
                           }}
                           as={`/movies/genre/${genre.id}`}
                           key={genre.id}
+                          className="italic hover:underline"
                         >
-                          <a className="italic hover:underline">{genre.name}</a>
+                          {genre.name}
                         </Link>
                       );
                     })}
