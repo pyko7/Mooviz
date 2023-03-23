@@ -5,10 +5,8 @@ import Link from "next/link";
 
 const MobileNavbar = ({ isOpen, setIsOpen }: MobileNavbarProps) => {
   return (
-    // Use the `Transition` component at the root level
     <Transition show={isOpen}>
       <Dialog onClose={() => setIsOpen(false)}>
-        {/* background opacity transition */}
         <Transition.Child
           enter="ease-linear duration-300"
           enterFrom="opacity-0"
@@ -16,7 +14,7 @@ const MobileNavbar = ({ isOpen, setIsOpen }: MobileNavbarProps) => {
           leave="ease-linear duration-700"
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
-          className="block fixed inset-0 overflow-hidden bg-black/[.25] backdrop-blur-sm z-50"
+          className="fixed inset-0 overflow-hidden bg-black/[.45] backdrop-blur-sm z-50"
         />
         <Transition.Child
           enter="ease-in-out duration-500 "
@@ -25,7 +23,7 @@ const MobileNavbar = ({ isOpen, setIsOpen }: MobileNavbarProps) => {
           leave="ease-in duration-500"
           leaveFrom="translate-x-0"
           leaveTo="translate-x-full"
-          className="block fixed  right-0 w-60 top-0 min-h-screen bg-white dark:bg-neutral-800 dark:text-white z-50"
+          className="fixed right-0 w-60 top-0 min-h-screen bg-neutral-900 text-neutral-200 z-50"
         >
           <Transition.Child
             enter="ease-in-out duration-500 "
@@ -35,17 +33,18 @@ const MobileNavbar = ({ isOpen, setIsOpen }: MobileNavbarProps) => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Panel className="w-full h-screen">
-              {/* nav list translate animation */}
-              <button className="w-full p-5 mb-16 flex justify-end">
-                <XMarkIcon
-                  className="w-9 h-9 text-secondary"
+            <Dialog.Panel className="w-full h-screen p-6">
+              <div className="w-full flex flex-row-reverse mb-10">
+                <button
                   aria-label="Close navigation modal"
                   onClick={() => setIsOpen(false)}
-                />
-              </button>
+                  className="w-9 h-9 text-secondary"
+                >
+                  <XMarkIcon aria-hidden="true" />
+                </button>
+              </div>
 
-              <nav className="w-full px-3">
+              <nav className="w-full">
                 <ul className="w-full flex flex-col gap-y-6 items-start text-secondary font-semibold text-base">
                   <li>
                     <Link href="/" onClick={() => setIsOpen(false)}>

@@ -1,8 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./pages/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
+  content: [
+    "./pages/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,jsx,ts,tsx}",
+  ],
   theme: {
     extend: {
+      backgroundImage: {
+        gradientBlackSm:
+          "linear-gradient(-90deg,rgba(255, 255, 255, 0) 55%, rgba(0, 0, 0, 1) 100%)",
+        gradientBlackMd:
+          "linear-gradient(-90deg,rgba(255, 255, 255, 0) 20%, rgba(0, 0, 0, 1) 100%)",
+        gradientBlackBottom:
+          "linear-gradient(rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 100%)",
+        gradientBlackTop:
+          "linear-gradient(0deg,rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 1) 100%)",
+      },
       keyframes: {
         fadeInOut: {
           "0%, 25%": { opacity: "1" },
@@ -14,14 +27,14 @@ module.exports = {
       },
     },
     screens: {
-      xl: { max: "1199px" },
-      // => @media (max-width: 1279px) { ... }
+      xl: { max: "1200px" },
+      // => @media (max-width: 1200px) { ... }
 
-      lg: { max: "1023px" },
-      // => @media (max-width: 1023px) { ... }
+      lg: { max: "1024px" },
+      // => @media (max-width: 1024px) { ... }
 
-      md: { max: "767px" },
-      // => @media (max-width: 767px) { ... }
+      md: { max: "768px" },
+      // => @media (max-width: 768px) { ... }
 
       sm: { max: "576px" },
       // => @media (max-width: 576px) { ... }
