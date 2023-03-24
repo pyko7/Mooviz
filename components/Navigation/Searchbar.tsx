@@ -1,7 +1,7 @@
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { useQuery } from "@tanstack/react-query";
-import { getMoviesBySearch } from "@/utils/getMoviesBySearch";
+import { getMoviesBySearch } from "@/utils/api/getMoviesBySearch";
 import LoadingSpinner from "../Loaders/LoadingSpinner";
 import { ChangeEvent, useState } from "react";
 import MovieList from "../Lists/MovieList";

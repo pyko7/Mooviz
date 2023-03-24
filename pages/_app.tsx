@@ -24,8 +24,3 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     </QueryClientProvider>
   );
 }
-
-/*
-searchbar
-responsive 
-*/
