@@ -23,7 +23,7 @@ const Layout = ({ children }: ChildrenProps) => {
       </Head>
 
       <Header />
-      <main className="w-full flex flex-col items-center bg-neutral-800 text-neutral-100 shadow-[inset_0_25px_50px_-12px_rgba(58,58,58,0.25)]">
+      <main className="absolute top-0 left-0 w-full flex flex-col items-center bg-neutral-800 text-neutral-100 shadow-[inset_0_25px_50px_-12px_rgba(58,58,58,0.25)]">
         {children}
       </main>
     </>

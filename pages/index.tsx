@@ -4,12 +4,15 @@ import { useQuery } from "@tanstack/react-query";
 import Carousel from "../components/Carousel";
 import LoadingSpinner from "../components/Loaders/LoadingSpinner";
 import MovieList from "../components/Lists/MovieList";
-import { getWeeklyPopularMovies } from "../utils/getWeeklyPopularMovies";
-import { getGenresList } from "../utils/getGenresList";
-import { getMoviesByGenre } from "../utils/getMoviesByGenre";
+import { getWeeklyPopularMovies } from "@/utils/api/getWeeklyPopularMovies";
+import { getGenresList } from "../utils/api/getGenresList";
+import { getMoviesByGenre } from "../utils/api/getMoviesByGenre";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
-import { MoviesGenre } from "@/types/movies";
-import { getProvidersList } from "@/utils/getProvidersList";
+import { MoviesGenre, MoviesProvider } from "@/types/movies";
+import { getProvidersList } from "@/utils/api/getProvidersList";
+import ProviderCard from "@/components/Cards/ProviderCard";
+import { getProviders } from "@/utils/getProviders";
+import { providersList } from "@/utils/providersList";
 
 export default function Home() {
   const [genreId, setGenreId] = useState(0);
@@ -20,12 +23,6 @@ export default function Home() {
   const popularMoviesByGenre = useQuery(["movies", genreId], () =>
     getMoviesByGenre(genreId, 0)
   );
-  const providers = useQuery(["providers"], getProvidersList);
-
-  /*Sort by priority display, 
-  Netflix Disney Plus Amazon Prime Video Paramount plus HBO Crunchyroll  Anime Digital network Apple TV
-*/
-  console.log(providers.data);
 
   // const handleGenre = (genre: MoviesGenre) => {
   //   if (genre.id === null || genre.name === undefined) {
@@ -40,7 +37,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="absolute top-0 left-0 w-full">
+      <section className="w-full">
         {moviesList.isLoading ? (
           <LoadingSpinner />
         ) : moviesList.isError ? (
@@ -51,6 +48,15 @@ export default function Home() {
         ) : (
           <Carousel movies={moviesList.data.results} />
         )}
+      </section>
+
+      <section
+        className="w-full my-8 px-4 flex items-center gap-3 "
+        
+      >
+        {providersList?.map((provider) => (
+          <ProviderCard {...provider} key={provider.id} />
+        ))}
       </section>
 
       {/* <section className="w-full max-w-[1920px] py-10 px-14 flex flex-col gap-y-10 overflow-x-hidden xl:w-11/12 md:w-full md:px-8">
