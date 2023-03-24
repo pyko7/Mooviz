@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Head from "next/head";
 import { useQuery } from "@tanstack/react-query";
-import { getGenresList } from "@/utils/getGenresList";
-import { getWeeklyPopularMovies } from "@/utils/getWeeklyPopularMovies";
+import { getGenresList } from "@/utils/api/getGenresList";
+import { getWeeklyPopularMovies } from "@/utils/api/getWeeklyPopularMovies";
 import GenreCard from "../../components/Cards/GenreCard";
 import LoadingSpinner from "../../components/Loaders/LoadingSpinner";
 import MovieList from "../../components/Lists/MovieList";
