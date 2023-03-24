@@ -92,7 +92,7 @@ const Carousel = ({ movies }: CarouselMoviesList) => {
                   index !== imgIndex ? "bg-neutral-600" : "bg-neutral-200"
                 } hover:bg-neutral-200 cursor-pointer`}
                 key={index}
-                onClick={() => handleClick(index)}
+                onClick={() => handleClick(imgIndex)}
               ></button>
             </li>
           );
