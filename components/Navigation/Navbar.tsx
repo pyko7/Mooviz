@@ -5,6 +5,9 @@ const Navbar = () => {
     <nav>
       <ul className="w-fit flex items-center gap-x-10 font-bold uppercase">
         <li>
+          <Link href="/">Home</Link>
+        </li>
+        <li>
           <Link href="/movies">Movies</Link>
         </li>
       </ul>
