@@ -9,6 +9,14 @@
   html {
     font-family: "DM Sans", sans-serif;
   }
+  /*Navigation tabs*/
+  .tabs__scrollbar--hide::-webkit-scrollbar {
+    display: none;
+  }
+  .tabs__scrollbar--hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }
 
 @layer components {

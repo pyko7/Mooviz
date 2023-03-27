@@ -10,9 +10,8 @@ import { getMoviesByGenre } from "../utils/api/getMoviesByGenre";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { MoviesGenre, MoviesProvider } from "@/types/movies";
 import { getProvidersList } from "@/utils/api/getProvidersList";
-import ProviderCard from "@/components/Cards/ProviderCard";
 import { getProviders } from "@/utils/getProviders";
-import { providersList } from "@/utils/providersList";
+import ProvidersList from "@/components/Lists/ProvidersList";
 
 export default function Home() {
   const [genreId, setGenreId] = useState(0);
@@ -50,13 +49,8 @@ export default function Home() {
         )}
       </section>
 
-      <section
-        className="w-full my-8 px-4 flex items-center gap-3 "
-        
-      >
-        {providersList?.map((provider) => (
-          <ProviderCard {...provider} key={provider.id} />
-        ))}
+      <section className="relative w-full">
+        <ProvidersList />
       </section>
 
       {/* <section className="w-full max-w-[1920px] py-10 px-14 flex flex-col gap-y-10 overflow-x-hidden xl:w-11/12 md:w-full md:px-8">
