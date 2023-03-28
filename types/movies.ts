@@ -3,6 +3,11 @@ export interface MoviesGenre {
   name: string;
 }
 
+export interface PopularMoviesByGenre {
+  genre: string;
+  movies: CarouselMovie[];
+}
+
 export interface MoviesProvider {
   id: number;
   provider_name: string;
@@ -21,4 +26,8 @@ export interface CarouselMovie {
 
 export interface CarouselMoviesList {
   movies: CarouselMovie[];
+}
+
+export interface MovieCard {
+  movie: CarouselMovie;
 }

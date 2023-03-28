@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Carousel from "../components/Carousel";
 import LoadingSpinner from "../components/Loaders/LoadingSpinner";
@@ -8,31 +8,51 @@ import { getWeeklyPopularMovies } from "@/utils/api/getWeeklyPopularMovies";
 import { getGenresList } from "../utils/api/getGenresList";
 import { getMoviesByGenre } from "../utils/api/getMoviesByGenre";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
-import { MoviesGenre, MoviesProvider } from "@/types/movies";
+import {
+  CarouselMovie,
+  MoviesGenre,
+  MoviesProvider,
+  PopularMoviesByGenre,
+} from "@/types/movies";
 import { getProvidersList } from "@/utils/api/getProvidersList";
 import { getProviders } from "@/utils/getProviders";
 import ProvidersList from "@/components/Lists/ProvidersList";
+import Movies from "./movies";
+import MoviesListByGenre from "@/components/Lists/MoviesListByGenre";
 
 export default function Home() {
-  const [genreId, setGenreId] = useState(0);
-  const [genreName, setGenreName] = useState("");
+  const [popularMoviesByGenre, setPopularMoviesByGenre] = useState<
+    PopularMoviesByGenre[]
+  >([]);
 
-  const moviesList = useQuery(["carousel"], getWeeklyPopularMovies);
-  const genresList = useQuery(["genres"], getGenresList);
-  const popularMoviesByGenre = useQuery(["movies", genreId], () =>
-    getMoviesByGenre(genreId, 0)
-  );
+  const moviesList = useQuery(["carousel"], getWeeklyPopularMovies, {
+    staleTime: 30 * (60 * 1000), // 30 mins
+    cacheTime: 45 * (60 * 1000), // 45 mins
+  });
+  const genresList = useQuery(["genres"], getGenresList, {
+    staleTime: 30 * (60 * 1000), // 30 mins
+    cacheTime: 45 * (60 * 1000), // 45 mins
+  });
 
-  // const handleGenre = (genre: MoviesGenre) => {
-  //   if (genre.id === null || genre.name === undefined) {
-  //     setGenreId(null);
-  //     setGenreName(null);
-  //   } else {
-  //     setGenreId(genre.id);
-  //     setGenreName(genre.name);
-  //   }
-  //   popularMoviesByGenre.refetch();
-  // };
+  useEffect(() => {
+    const getPopularMoviesByGenre = async () => {
+      if (typeof genresList.data === "undefined") {
+        return;
+      }
+      for (const genre of genresList.data.genres) {
+        const moviesByGenre = await getMoviesByGenre(genre.id);
+
+        setPopularMoviesByGenre((popularMoviesByGenre) => [
+          ...popularMoviesByGenre,
+          {
+            genre: genre.name,
+            movies: moviesByGenre.results,
+          },
+        ]);
+      }
+    };
+    getPopularMoviesByGenre();
+  }, [genresList.data]);
 
   return (
     <>
@@ -54,6 +74,14 @@ export default function Home() {
           Providers
         </h2>
         <ProvidersList />
+        {popularMoviesByGenre?.map((movies) => (
+          <div className="w-full" key={movies.genre}>
+            <h2 className="text-2xl uppercase font-bold xl:text-xl sm:text-lg">
+              {movies.genre}
+            </h2>
+            <MoviesListByGenre movies={movies.movies} />
+          </div>
+        ))}
       </section>
 
       {/* <section className="w-full max-w-[1920px] py-10 px-14 flex flex-col gap-y-10 overflow-x-hidden xl:w-11/12 md:w-full md:px-8">
