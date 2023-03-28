@@ -21,11 +21,17 @@ const MoviesListByGenre = ({ movies }: HomepageMoviesList) => {
       <ul
         ref={ref}
         role="listitem"
-        className="tabs__scrollbar--hide w-full py-10 flex items-center gap-5 overflow-x-auto scroll-smooth md:py-4"
+        className="tabs__scrollbar--hide w-full mb-10 py-4 flex items-center gap-5 overflow-x-auto scroll-smooth md:py-4"
         onScroll={handleScroll}
       >
         {movies?.map((movie) => (
-          <li className="min-w-[250px]" key={movie.id}>
+          <li
+            className="min-w-[250px] xl:min-w-[200px] lg:min-w-[175px] md:min-w-[150px] sm:"
+            style={{
+              boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+            }}
+            key={movie.id}
+          >
             <MovieCard movie={movie} />
           </li>
         ))}

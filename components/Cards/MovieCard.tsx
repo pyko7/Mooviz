@@ -19,7 +19,7 @@ const MovieCard = ({ movie }: MovieCard) => {
           priority
           width={250}
           height={250}
-          className="object-contain"
+          className="object-contain rounded-md"
           alt={movie.title}
         />
       ) : (

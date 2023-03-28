@@ -8,6 +8,8 @@ import { getMoviesByGenre } from "../utils/api/getMoviesByGenre";
 import { PopularMoviesByGenre } from "@/types/movies";
 import ProvidersList from "@/components/Lists/ProvidersList";
 import MoviesListByGenre from "@/components/Lists/MoviesListByGenre";
+import Link from "next/link";
+import { ChevronRightIcon } from "@heroicons/react/24/solid";
 
 export default function Home() {
   const [popularMoviesByGenre, setPopularMoviesByGenre] = useState<
@@ -65,9 +67,22 @@ export default function Home() {
         <ProvidersList />
         {popularMoviesByGenre?.map((movies) => (
           <div className="w-full" key={movies.genre}>
-            <h2 className="text-2xl uppercase font-bold xl:text-xl sm:text-lg">
-              {movies.genre}
-            </h2>
+            <div className="w-full pr-2 flex justify-between uppercase sm:mt-10">
+              <h2 className="text-2xl font-bold xl:text-xl sm:text-lg">
+                {movies.genre}
+              </h2>
+              <Link
+                href={{
+                  pathname: "/movies/genre/[id]",
+                  query: { id: movies.genre, name: movies.genre },
+                }}
+                as={`/movies/genre/${movies.genre}`}
+                className="w-fit flex items-center gap-x-1 font-medium hover:underline sm:text-lg"
+              >
+                <p>See all</p>
+                <ChevronRightIcon aria-hidden="true" className="w-5 h-5" />
+              </Link>
+            </div>
             <MoviesListByGenre movies={movies.movies} />
           </div>
         ))}
