@@ -1,9 +1,9 @@
-import { CarouselMoviesList } from "@/types/movies";
+import { HomepageMoviesList } from "@/types/movies";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const Carousel = ({ movies }: CarouselMoviesList) => {
+const Carousel = ({ movies }: HomepageMoviesList) => {
   const moviesList = movies.slice(0, 3);
   const [index, setIndex] = useState(0);
   const [mobile, setMobile] = useState(false);

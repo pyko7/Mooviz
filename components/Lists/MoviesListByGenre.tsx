@@ -1,52 +1,10 @@
-import { CarouselMoviesList } from "@/types/movies";
+import { HomepageMoviesList } from "@/types/movies";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
-import { useEffect, useRef, useState } from "react";
 import MovieCard from "../Cards/MovieCard";
+import { useScrollX } from "@/hooks/useScrollX";
 
-const MoviesListByGenre = ({ movies }: CarouselMoviesList) => {
-  const [scrollX, setScrollX] = useState(0); // For detecting start scroll postion
-  const [scrollEnd, setScrollEnd] = useState(false); // For detecting end of scrolling
-  const ref = useRef<HTMLUListElement>(null);
-
-  const handleClick = (scrollOffset: number) => {
-    if (!ref.current) {
-      return;
-    }
-    ref.current.scrollLeft += scrollOffset;
-    setScrollX(scrollX + scrollOffset);
-  };
-  const handleScroll = () => {
-    if (!ref.current) {
-      return;
-    }
-    setScrollX(ref.current.scrollLeft);
-    if (
-      Math.floor(ref.current.scrollWidth - ref.current.scrollLeft) <=
-      ref.current.offsetWidth
-    ) {
-      setScrollEnd(true);
-    } else {
-      setScrollEnd(false);
-    }
-  };
-  console.log(movies);
-
-  useEffect(() => {
-    const scrollButtonVisible = () => {
-      if (ref.current === null) {
-        return;
-      }
-      if (
-        Math.floor(ref.current.scrollWidth - ref.current.scrollLeft) <=
-        ref.current.offsetWidth
-      ) {
-        setScrollEnd(true);
-      } else {
-        setScrollEnd(false);
-      }
-    };
-    scrollButtonVisible();
-  }, [ref.current?.scrollWidth, ref.current?.scrollLeft]);
+const MoviesListByGenre = ({ movies }: HomepageMoviesList) => {
+  const { ref, scrollX, scrollEnd, handleClick, handleScroll } = useScrollX();
 
   return (
     <div className="relative w-full h-full">

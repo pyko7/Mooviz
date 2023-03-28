@@ -5,7 +5,7 @@ export interface MoviesGenre {
 
 export interface PopularMoviesByGenre {
   genre: string;
-  movies: CarouselMovie[];
+  movies: HomepageMovies[];
 }
 
 export interface MoviesProvider {
@@ -16,7 +16,7 @@ export interface MoviesProvider {
   lighten_color: string;
 }
 
-export interface CarouselMovie {
+export interface HomepageMovies {
   backdrop_path: string;
   poster_path: string;
   title: string;
@@ -24,10 +24,10 @@ export interface CarouselMovie {
   id: number;
 }
 
-export interface CarouselMoviesList {
-  movies: CarouselMovie[];
+export interface HomepageMoviesList {
+  movies: HomepageMovies[];
 }
 
 export interface MovieCard {
-  movie: CarouselMovie;
+  movie: HomepageMovies;
 }

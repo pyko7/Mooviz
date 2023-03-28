@@ -1,23 +1,12 @@
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Carousel from "../components/Carousel";
 import LoadingSpinner from "../components/Loaders/LoadingSpinner";
-import MovieList from "../components/Lists/MovieList";
 import { getWeeklyPopularMovies } from "@/utils/api/getWeeklyPopularMovies";
 import { getGenresList } from "../utils/api/getGenresList";
 import { getMoviesByGenre } from "../utils/api/getMoviesByGenre";
-import { ChevronRightIcon } from "@heroicons/react/24/solid";
-import {
-  CarouselMovie,
-  MoviesGenre,
-  MoviesProvider,
-  PopularMoviesByGenre,
-} from "@/types/movies";
-import { getProvidersList } from "@/utils/api/getProvidersList";
-import { getProviders } from "@/utils/getProviders";
+import { PopularMoviesByGenre } from "@/types/movies";
 import ProvidersList from "@/components/Lists/ProvidersList";
-import Movies from "./movies";
 import MoviesListByGenre from "@/components/Lists/MoviesListByGenre";
 
 export default function Home() {
