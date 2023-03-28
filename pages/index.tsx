@@ -49,7 +49,10 @@ export default function Home() {
         )}
       </section>
 
-      <section className="relative w-full">
+      <section className="w-full py-6 px-4">
+        <h2 className="text-2xl uppercase font-bold xl:text-xl sm:text-lg">
+          Providers
+        </h2>
         <ProvidersList />
       </section>
 
