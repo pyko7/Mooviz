@@ -17,9 +17,9 @@ const ProgressBar = ({ percentage }: Percentage) => {
                 percentage * 3.6
               }deg)`,
       }}
-      className="relative w-16 h-16 rounded-[50%] sm:p-3 sm:text-sm"
+      className="relative w-14 h-14 rounded-[50%] sm:w-12 sm:h-12 sm:text-sm"
     >
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[88%] h-[88%] flex items-center justify-center text-xl bg-black rounded-[50%]">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[88%] h-[88%] flex items-center justify-center text-lg bg-black rounded-[50%]">
         <p>{percentage}%</p>
       </div>
     </div>

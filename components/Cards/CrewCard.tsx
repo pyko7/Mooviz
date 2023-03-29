@@ -1,17 +1,17 @@
 import Image from "next/image";
 import defaultPoster from "@/public/assets/default_movie.webp";
-import { Actor } from "@/types/movies";
+import { CrewMember } from "@/types/movies";
 
-const ActorCard = ({ actor }: { actor: Actor }) => {
+const CrewCard = ({ crew }: { crew: CrewMember }) => {
   return (
     <article className="max-w-[150px] rounded-md flex flex-col gap-3 ">
-      {actor.profile_path !== null ? (
+      {crew.profile_path !== null ? (
         <Image
-          src={`https://image.tmdb.org/t/p/h632/${actor.profile_path}`}
+          src={`https://image.tmdb.org/t/p/h632/${crew.profile_path}`}
           width={150}
           height={150}
           className="object-contain rounded-md"
-          alt={actor.name}
+          alt={crew.name}
         />
       ) : (
         <Image
@@ -19,20 +19,18 @@ const ActorCard = ({ actor }: { actor: Actor }) => {
           width={250}
           height={250}
           className="object-contain rounded-md"
-          alt={actor.name}
+          alt={crew.name}
         />
       )}
 
       <div className="w-full">
-        <p className="font-bold text-lg md:text-lg sm:text-lg">
-          {actor.character}
-        </p>
+        <p className="font-bold text-lg md:text-lg sm:text-lg">{crew.name}</p>
         <p className="text-base text-neutral-400 md:text-lg sm:text-lg">
-          {actor.name}
+          {crew.department}
         </p>
       </div>
     </article>
   );
 };
 
-export default ActorCard;
+export default CrewCard;

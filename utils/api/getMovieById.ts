@@ -1,4 +1,8 @@
-export const getMovieById = async (movieId: number) => {
+import { MoviesDetails } from "@/types/movies";
+
+export const getMovieById = async (
+  movieId: number
+): Promise<MoviesDetails> => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/3/movie/${movieId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
   );

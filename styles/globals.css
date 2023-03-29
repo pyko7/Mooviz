@@ -24,4 +24,7 @@
     @apply content-[''] absolute top-0 left-0 w-full h-full 
     bg-gradientBlackSm z-[5] xl:bg-gradientBlackMd sm:bg-gradientBlackBottom;
   }
+  .poster_container::before {
+    @apply content-[''] absolute top-0 left-0 w-full h-full z-[5] bg-gradientBlackSm xl:bg-gradientBlackMd  sm:bg-gradientBlackLgBottom;
+  }
 }

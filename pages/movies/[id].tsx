@@ -9,10 +9,22 @@ import LoadingSpinner from "../../components/Loaders/LoadingSpinner";
 import MovieList from "../../components/Lists/MovieList";
 import ProgressBar from "../../components/ProgressBar";
 import ActorList from "../../components/Lists/ActorList";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { getMovieStats } from "@/utils/getMovieStats";
+import { MovieStats } from "@/types/movies";
+import CrewList from "@/components/Lists/CrewList";
 
 const MovieById = () => {
-  const router = useRouter();
-  const movieId = router.query["id"];
+  const [mobile, setMobile] = useState(false);
+  const [movieStats, setMovieStats] = useState<MovieStats>({
+    score: 0,
+    hour: 0,
+    minutes: 0,
+  });
+
+  const { query } = useRouter();
+  const movieId = parseInt(query.id as string);
 
   const {
     isLoading,
@@ -26,13 +38,28 @@ const MovieById = () => {
     getSimilarMovies(movieId)
   );
 
-  const userScore = Math.trunc((movie?.vote_average / 10) * 100);
-  const movieRuntimeHours = Math.floor(movie?.runtime / 60);
-  const movieRuntimeMinutes = movie?.runtime % 60;
+  useEffect(() => {
+    if (typeof movie !== "undefined") {
+      const { score, hour, minutes } = getMovieStats(
+        movie?.vote_average,
+        movie?.runtime
+      );
+      setMovieStats({ score, hour, minutes });
+    }
+  }, [movie]);
+
+  useEffect(() => {
+    const getWindowSize = () => {
+      if (window.innerWidth < 576) {
+        setMobile(true);
+      }
+    };
+    getWindowSize();
+  }, []);
 
   return (
     <>
-      {movie && (
+      {movie ? (
         <Head>
           <title>{movie.title}</title>
           <meta name="description" content={movie.overview} />
@@ -40,80 +67,110 @@ const MovieById = () => {
           <meta property="og:description" content={movie.overview} />
           <meta property="og:title" content={movie.title} />
         </Head>
-      )}
+      ) : null}
 
-      <section className="w-full max-w-[1920px] flex flex-col gap-y-32 py-10 overflow-x-hidden xl:w-11/12 md:w-full">
-        <div className="w-full px-20 lg:px-6 md:px-0">
-          {isLoading ? (
-            <LoadingSpinner />
-          ) : isError ? (
-            <p className="text-center italic">
-              Sorry, an error has occured. Unfortunately, this content
-              isn&apos;t available.
-            </p>
-          ) : (
-            <div
-              style={{
-                backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${movie.backdrop_path})`,
-              }}
-              className={`relative w-full h-[550px] px-8 flex items-center bg-cover bg-center before:absolute before:inset-0 before:bg-gradient-to-r before:from-black before:via-black/90 before:to-black/10 xl:justify-start md:px-6 sm:h-[525px]`}
-            >
-              <div className="w-3/5 flex flex-col gap-y-7 text-white z-10 lg:w-2/3 sm:gap-y-4 sm:w-11/12">
-                <div className="flex flex-col gap-y-3">
-                  <h2 className="w-full font-medium text-5xl xl:text-3xl">
-                    {movie.title}
-                    <span className="text-4xl italic font-normal xl:text-xl lg:text-lg">
-                      ({movie.release_date.slice(0, 4)})
-                    </span>
-                  </h2>
-                  <div className="w-full flex gap-x-3 sm:gap-x-2 sm:text-sm">
-                    {movie.genres?.map((genre) => {
-                      return (
-                        <Link
-                          href={{
-                            pathname: "/movies/genre/[id]",
-                            query: { id: genre.id, name: genre.name },
-                          }}
-                          as={`/movies/genre/${genre.id}`}
-                          key={genre.id}
-                          className="italic hover:underline"
-                        >
-                          {genre.name}
-                        </Link>
-                      );
-                    })}
-                    <span>-</span>
-                    <p>
-                      {movieRuntimeHours}h{movieRuntimeMinutes}
-                    </p>
-                  </div>
-                  <p className="w-3/4 text- italic xl:text-base lg:w-full sm:text-sm">
-                    {movie.tagline}
-                  </p>
-                </div>
-                <div className="w-3/4 text-lg xl:text-base lg:w-full sm:flex sm: items-center sm:gap-x-4">
-                  <ProgressBar percentage={userScore} />
-                  <p className="text-base italic mt-2 sm:text-sm">
-                    (based on {movie.vote_count} votes)
-                  </p>
-                </div>
-                <div>
-                  <h2 className="mb-2 text-xl">Overview</h2>
-                  <p className="w-2/3 text-base xl:w-4/5 xl:text-base lg:w-11/12 sm:w-full sm:text-sm sm:line-clamp-[12]">
-                    {movie.overview}
-                  </p>
-                </div>
-              </div>
+      <section className="w-full">
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : isError ? (
+          <p className="text-center italic">
+            Sorry, an error has occured. Unfortunately, this content isn&apos;t
+            available.
+          </p>
+        ) : (
+          <div className="relative inline-block w-full">
+            <div className="poster_container relative w-full h-[900px] sm:h-auto sm:min-h-screen">
+              <Image
+                src={
+                  !mobile
+                    ? `https://image.tmdb.org/t/p/original/${movie.backdrop_path}`
+                    : `https://image.tmdb.org/t/p/original/${movie.poster_path}`
+                }
+                fill
+                className="object-cover"
+                priority
+                alt={movie.title}
+              />
             </div>
-          )}
-        </div>
-        <div className="w-full px-20 lg:px-6">
-          <h3 className="text-2xl font-bold mb-3 tracking-wide uppercase dark:text-white">
+
+            <div
+              className="absolute top-1/2 -translate-y-1/2 left-0 w-full px-20 flex flex-col gap-6 z-10 xl:px-10 
+                sm:top-3/4 sm:left-1/2 sm:-translate-x-1/2 sm:items-center sm:px-4 sm:gap-3 sm:bg-gradientBlackLgBottom"
+            >
+              <h1 className="w-full text-3xl font-bold line-clamp-1 sm:text-2xl sm:text-center sm:line-clamp-none">
+                {movie.title}
+              </h1>
+
+              <div className="w-full flex gap-x-3 sm:px-4 sm:gap-x-2 sm:justify-center sm:items-center sm:flex-wrap sm:text-sm ">
+                <p
+                  className="hidden sm:block sm:border-2 sm:px-1 sm:rounded-md sm:bg-black/25"
+                  style={{
+                    borderColor:
+                      movieStats.score < 50
+                        ? "#ef4444"
+                        : movieStats.score > 50 && movieStats.score < 70
+                        ? "#fde047"
+                        : "#22c55e",
+                  }}
+                >
+                  {movieStats.score}%
+                </p>
+                {movie.genres?.map((genre) => {
+                  return (
+                    <Link
+                      href={{
+                        pathname: "/movies/genre/[id]",
+                        query: { id: genre.id, name: genre.name },
+                      }}
+                      as={`/movies/genre/${genre.id}`}
+                      key={genre.id}
+                      className="italic hover:underline"
+                    >
+                      {genre.name}
+                    </Link>
+                  );
+                })}
+                <span>-</span>
+                {movie.release_date.slice(0, 4)}
+                <span>-</span>
+                <p>
+                  {movieStats.hour}h{movieStats.minutes}
+                </p>
+              </div>
+
+              <div className="w-3/4 flex gap-2 items-end text-lg xl:text-base lg:w-full sm:hidden">
+                <ProgressBar percentage={movieStats.score} />
+                <p className="text-base italic mt-2 sm:text-sm">
+                  (based on {movie.vote_count} votes)
+                </p>
+              </div>
+
+              <p className="w-2/3 max-w-xl line-clamp-4 lg:text-base md:w-4/5 md:max-w-none md:text-sm sm:line-clamp-none">
+                {movie.overview}
+              </p>
+              <Link
+                href={`/movies/${movie.id}`}
+                className="w-full max-w-xs py-4 mt-12 text-center bg-red-600 rounded-md uppercase font-bold shadow-md
+                hover:bg-red-500 sm:py-3 sm:w-4/5 sm:my-6 sm:mx-auto"
+              >
+                See trailer
+              </Link>
+            </div>
+          </div>
+        )}
+        <div className="w-full py-10 px-20 lg:px-6">
+          <h2 className="text-2xl font-bold mb-3 tracking-wide uppercase">
             Cast
-          </h3>
+          </h2>
           <ActorList actors={credits} />
         </div>
-        <div className="w-full px-20 dark:text-white lg:px-6">
+        <div className="w-full py-10 px-20 lg:px-6">
+          <h2 className="text-2xl font-bold mb-3 tracking-wide uppercase">
+            Crew
+          </h2>
+          <CrewList crew={credits} />
+        </div>
+        <div className="w-full px-20  lg:px-6">
           {similarMovies.isLoading ? (
             <LoadingSpinner />
           ) : similarMovies.isError ? (

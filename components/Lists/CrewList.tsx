@@ -3,8 +3,9 @@ import { MovieCredits } from "@/types/movies";
 import { UseQueryResult } from "@tanstack/react-query";
 import { useScrollX } from "@/hooks/useScrollX";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import CrewCard from "../Cards/CrewCard";
 
-const ActorList = ({ actors }: { actors: UseQueryResult<MovieCredits> }) => {
+const CrewList = ({ crew }: { crew: UseQueryResult<MovieCredits> }) => {
   const { scrollX, handleClick, ref, handleScroll, scrollEnd } = useScrollX();
   return (
     <div className="relative w-full h-full">
@@ -24,9 +25,9 @@ const ActorList = ({ actors }: { actors: UseQueryResult<MovieCredits> }) => {
         className="tabs__scrollbar--hide w-full py-2 flex gap-5 overflow-x-auto scroll-smooth md:py-4"
         onScroll={handleScroll}
       >
-        {actors.data?.cast.slice(0, 10).map((actor) => (
-          <li key={actor.id}>
-            <ActorCard actor={actor} />
+        {crew.data?.crew.slice(0, 10).map((crew) => (
+          <li key={crew.id}>
+            <CrewCard crew={crew} />
           </li>
         ))}
       </ul>
@@ -44,4 +45,4 @@ const ActorList = ({ actors }: { actors: UseQueryResult<MovieCredits> }) => {
   );
 };
 
-export default ActorList;
+export default CrewList;

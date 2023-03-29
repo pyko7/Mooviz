@@ -41,3 +41,36 @@ export interface HomepageMoviesList {
 export interface MovieCard {
   movie: HomepageMovies;
 }
+
+export interface MovieStats {
+  score: number;
+  hour: number;
+  minutes: number;
+}
+
+export interface MoviesDetails extends HomepageMovies {
+  genres: MovieGenre[];
+  vote_average: number;
+  vote_count: number;
+  runtime: number;
+  release_date: string;
+}
+
+export interface Actor {
+  id: number;
+  profile_path: string;
+  name: string;
+  character: string;
+}
+
+export interface CrewMember {
+  id: number;
+  profile_path: string;
+  department: string;
+  name: string;
+}
+
+export interface MovieCredits {
+  cast: Actor[];
+  crew: CrewMember[];
+}

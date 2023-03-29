@@ -13,6 +13,8 @@ module.exports = {
           "linear-gradient(-90deg,rgba(255, 255, 255, 0) 20%, rgba(0, 0, 0, 1) 100%)",
         gradientBlackBottom:
           "linear-gradient(rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 100%)",
+        gradientBlackLgBottom:
+          "linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 80%)",
         gradientBlackTop:
           "linear-gradient(0deg,rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 1) 100%)",
       },
