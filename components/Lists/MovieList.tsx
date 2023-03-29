@@ -1,30 +1,12 @@
-import LoadingSpinner from "../Loaders/LoadingSpinner";
 import MovieCard from "../Cards/MovieCard";
+import { HomepageMoviesList } from "@/types/movies";
 
-const MovieList = ({ movies, search, removeSearch }) => {
-  const handleSearch = () => {
-    return search ? removeSearch(null) : null;
-  };
-
+const MovieList = ({ movies }: HomepageMoviesList) => {
   return (
-    <div
-      className="w-full grid grid-cols-6 gap-6 xl:grid-cols-4 lg:grid-cols-3 lg:gap-y-14 md:grid-cols-2 sm:grid-cols-1"
-      onClick={() => handleSearch()}
-    >
-      {movies.isLoading ? (
-        <LoadingSpinner />
-      ) : movies.isError ? (
-        <p className="text-center italic">
-          Sorry, an error has occured. Unfortunately, this content isn&apos;t
-          available.
-        </p>
-      ) : (
-        <>
-          {movies.map((movie) => (
-            <MovieCard movie={movie} search={search} key={movie.id} />
-          ))}
-        </>
-      )}
+    <div className="w-full flex flex-wrap gap-6 xl:justify-center lg:justify-start lg:gap-3 lg:gap-y-4 md:justify-center">
+      {movies.map((movie) => (
+        <MovieCard movie={movie} key={movie.id} />
+      ))}
     </div>
   );
 };

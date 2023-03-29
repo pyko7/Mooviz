@@ -1,6 +1,16 @@
-export interface MoviesGenre {
+export interface MovieGenre {
   id: number;
   name: string;
+}
+
+export interface GenresList {
+  genres: MovieGenre[];
+}
+
+export interface GenresListMoviesPage {
+  genres: MovieGenre[];
+  setMoviesList: (moviesList: []) => void;
+  handlePopularMovies: () => void;
 }
 
 export interface PopularMoviesByGenre {

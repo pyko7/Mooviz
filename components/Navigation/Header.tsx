@@ -16,8 +16,10 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed w-full my-0 mx-auto h-24 px-20 flex items-center gap-16 justify-start bg-transparent text-neutral-100 z-10 xl:px-10 md:justify-between sm:px-4
-    sm:bg-gradientBlackTop">
+    <header
+      className="fixed w-full my-0 mx-auto h-24 px-20 flex items-center gap-16 justify-start bg-gradientBlackTop text-neutral-100 z-10 xl:px-10 md:justify-between sm:px-4
+    "
+    >
       <Link href="/" className="mb-2 text-3xl font-['Delicious_Handrawn']">
         Mooviz
       </Link>
