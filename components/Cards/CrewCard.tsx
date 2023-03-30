@@ -1,10 +1,10 @@
 import Image from "next/image";
-import defaultPoster from "@/public/assets/default_movie.webp";
+import defaultPoster from "@/public/assets/default_cast.webp";
 import { CrewMember } from "@/types/movies";
 
 const CrewCard = ({ crew }: { crew: CrewMember }) => {
   return (
-    <article className="max-w-[150px] rounded-md flex flex-col gap-3 ">
+    <article className="w-[150px] rounded-md flex flex-col gap-3 lg:w-32 md:w-28">
       {crew.profile_path !== null ? (
         <Image
           src={`https://image.tmdb.org/t/p/h632/${crew.profile_path}`}

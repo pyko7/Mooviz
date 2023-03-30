@@ -158,13 +158,13 @@ const MovieById = () => {
             </div>
           </div>
         )}
-        <div className="w-full py-10 px-20 lg:px-6">
+        <div className="w-full py-10 px-20 lg:px-6 sm:pt-28 sm:pb-0">
           <h2 className="text-2xl font-bold mb-3 tracking-wide uppercase">
             Cast
           </h2>
           <ActorList actors={credits} />
         </div>
-        <div className="w-full py-10 px-20 lg:px-6">
+        <div className="w-full py-10 px-20 lg:px-6 sm:py-4">
           <h2 className="text-2xl font-bold mb-3 tracking-wide uppercase">
             Crew
           </h2>

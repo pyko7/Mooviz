@@ -4,7 +4,7 @@ import { Actor } from "@/types/movies";
 
 const ActorCard = ({ actor }: { actor: Actor }) => {
   return (
-    <article className="max-w-[150px] rounded-md flex flex-col gap-3 ">
+    <article className="w-[150px] rounded-md flex flex-col gap-3 lg:w-32 md:w-28">
       {actor.profile_path !== null ? (
         <Image
           src={`https://image.tmdb.org/t/p/h632/${actor.profile_path}`}
