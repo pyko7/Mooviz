@@ -4,7 +4,7 @@ export const getMovieById = async (
   movieId: number
 ): Promise<MoviesDetails> => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/3/movie/${movieId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
+    `${process.env.NEXT_PUBLIC_API_URL}/3/movie/${movieId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&video=true&language=en-US`
   );
   if (!res.ok) {
     const message = `An error has occured: ${res.status}`;

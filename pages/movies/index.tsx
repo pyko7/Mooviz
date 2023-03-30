@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Head from "next/head";
 import { useQuery } from "@tanstack/react-query";
 import { getGenresList } from "@/utils/api/getGenresList";
@@ -19,16 +19,16 @@ const Movies = () => {
     cacheTime: 45 * (60 * 1000), // 45 mins
   });
 
-  const handlePopularMovies = () => {
+  const handlePopularMovies = useCallback(() => {
     if (typeof popularMovies.data !== "undefined") {
       setMoviesList(popularMovies.data.results);
     }
     return;
-  };
+  }, [popularMovies.data]);
 
   useEffect(() => {
     handlePopularMovies();
-  }, [popularMovies.data]);
+  }, [handlePopularMovies]);
 
   return (
     <>

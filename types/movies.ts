@@ -74,3 +74,17 @@ export interface MovieCredits {
   cast: Actor[];
   crew: CrewMember[];
 }
+
+export interface VideoProps {
+  id: string;
+  key: string;
+  name: string;
+  official: boolean;
+  site: string;
+  type: string;
+}
+
+export interface VideosResults {
+  id: number;
+  results: VideoProps[];
+}
