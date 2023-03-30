@@ -1,6 +1,15 @@
+import { UseQueryResult } from "@tanstack/react-query";
+
 export interface MovieGenre {
   id: number;
   name: string;
+}
+
+export interface MoviesResults {
+  page: number;
+  results: HomepageMovies[];
+  total_pages: number;
+  total_results: number;
 }
 
 export interface GenresList {
@@ -40,6 +49,14 @@ export interface HomepageMoviesList {
 
 export interface MovieCard {
   movie: HomepageMovies;
+}
+
+export interface MovieById {
+  details: UseQueryResult<MoviesDetails>;
+  credits: UseQueryResult<MovieCredits>;
+  movieStats: MovieStats;
+  videos: VideoProps | undefined;
+  similarMovies: UseQueryResult<MoviesResults>;
 }
 
 export interface MovieStats {
