@@ -10,6 +10,7 @@ import { HomepageMovies } from "@/types/movies";
 
 const Movies = () => {
   const [moviesList, setMoviesList] = useState<HomepageMovies[]>([]);
+
   const genresList = useQuery(["genres"], getGenresList, {
     staleTime: 30 * (60 * 1000), // 30 mins
     cacheTime: 45 * (60 * 1000), // 45 mins

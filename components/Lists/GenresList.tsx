@@ -1,8 +1,8 @@
-import { useScrollX } from "@/hooks/useScrollX";
+import { ListType } from "@/types/components";
 import { GenresListMoviesPage } from "@/types/movies";
 import { getMoviesByGenre } from "@/utils/api/getMoviesByGenre";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
+import HorizontalScrollingList from "./HorizontalScrollingList";
 
 const GenresList = ({
   genres,
@@ -10,13 +10,6 @@ const GenresList = ({
   handlePopularMovies,
 }: GenresListMoviesPage) => {
   const [active, setActive] = useState(0);
-  const {
-    ref,
-    scrollX,
-    scrollEnd,
-    handleScroll,
-    handleClick: handleScrollClick,
-  } = useScrollX();
 
   const handleClick = async (genreId: number) => {
     if (genreId === 0) {
@@ -30,23 +23,8 @@ const GenresList = ({
   };
 
   return (
-    <div className="relative w-full h-full mt-24">
-      {scrollX !== 0 ? (
-        <button
-          name="Scroll through providers to left"
-          aria-label="Scroll to left"
-          className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-20 flex justify-center items-center z-10 bg-black/50 cursor-pointer opacity-20 hover:opacity-100 xl:h-14 lg:opacity-75 md:hidden"
-          onClick={() => handleScrollClick(-300)}
-        >
-          <ChevronLeftIcon className="w-6 h-6" aria-hidden="true" />
-        </button>
-      ) : null}
-      <ul
-        ref={ref}
-        role="listitem"
-        className="tabs__scrollbar--hide w-full flex items-center gap-6 overflow-x-auto scroll-smooth md:py-4"
-        onScroll={handleScroll}
-      >
+    <div className="mt-24">
+      <HorizontalScrollingList scroll={300} type={ListType.Text}>
         <li>
           <button
             type="button"
@@ -73,17 +51,7 @@ const GenresList = ({
             </button>
           </li>
         ))}
-      </ul>
-      {!scrollEnd ? (
-        <button
-          name="Scroll through providers to right"
-          aria-label="Scroll to right"
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-20 flex justify-center items-center z-10 bg-black/50 cursor-pointer opacity-20 hover:opacity-100 xl:h-14 lg:opacity-75 md:hidden"
-          onClick={() => handleScrollClick(300)}
-        >
-          <ChevronRightIcon className="w-6 h-6" aria-hidden="true" />
-        </button>
-      ) : null}
+      </HorizontalScrollingList>
     </div>
   );
 };

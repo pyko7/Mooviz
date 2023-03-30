@@ -6,6 +6,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        horizontalCardsShadow:
+          "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px",
+      },
       backgroundImage: {
         gradientBlackSm:
           "linear-gradient(-90deg,rgba(255, 255, 255, 0) 55%, rgba(0, 0, 0, 1) 100%)",

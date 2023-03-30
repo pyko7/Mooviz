@@ -18,7 +18,7 @@ export interface GenresList {
 
 export interface GenresListMoviesPage {
   genres: MovieGenre[];
-  setMoviesList: (moviesList: []) => void;
+  setMoviesList: (moviesList: HomepageMovies[]) => void;
   handlePopularMovies: () => void;
 }
 

@@ -24,7 +24,7 @@ export default function Home() {
     staleTime: 30 * (60 * 1000), // 30 mins
     cacheTime: 45 * (60 * 1000), // 45 mins
   });
-  
+
   useEffect(() => {
     const getPopularMoviesByGenre = async () => {
       if (typeof genresList.data === "undefined") {
