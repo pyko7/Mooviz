@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Carousel from "../components/Carousel";
-import LoadingSpinner from "../components/Loaders/LoadingSpinner";
 import { getWeeklyPopularMovies } from "@/utils/api/getWeeklyPopularMovies";
 import { getGenresList } from "../utils/api/getGenresList";
 import { getMoviesByGenre } from "../utils/api/getMoviesByGenre";
@@ -10,6 +9,8 @@ import ProvidersList from "@/components/Lists/ProvidersList";
 import MoviesListByGenre from "@/components/Lists/MoviesListByGenre";
 import Link from "next/link";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
+import CarouselSkeleton from "@/components/Loaders/CarouselSkeleton";
+import ListByGenreSkeleton from "@/components/Loaders/ListByGenreSkeleton";
 
 export default function Home() {
   const [popularMoviesByGenre, setPopularMoviesByGenre] = useState<
@@ -49,7 +50,7 @@ export default function Home() {
     <>
       <section className="w-full">
         {moviesList.isLoading ? (
-          <LoadingSpinner />
+          <CarouselSkeleton />
         ) : moviesList.isError ? (
           <p className="text-center italic">
             Sorry, an error has occured. Unfortunately, this content isn&apos;t
@@ -65,6 +66,14 @@ export default function Home() {
           Providers
         </h2>
         <ProvidersList />
+
+        {genresList.isLoading ? <ListByGenreSkeleton /> : null}
+        {genresList.isError ? (
+          <p className="text-center italic">
+            Sorry, an error has occured. Unfortunately, this content isn&apos;t
+            available.
+          </p>
+        ) : null}
         {popularMoviesByGenre?.map((movies) => (
           <div className="w-full" key={movies.genre}>
             <div className="w-full pr-2 flex justify-between uppercase sm:mt-10">

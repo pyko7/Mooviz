@@ -4,18 +4,15 @@ import CrewCard from "../Cards/CrewCard";
 import HorizontalScrollingList from "./HorizontalScrollingList";
 import { ListType } from "@/types/components";
 import CardSkeleton from "../Loaders/CardSkeleton";
+import ListSkeleton from "../Loaders/ListSkeleton";
 
 const CrewList = ({ crew }: { crew: UseQueryResult<MovieCredits> }) => {
   return (
     <HorizontalScrollingList scroll={650} type={ListType.Image}>
       {crew.isLoading ? (
-        Array(10)
-          .fill(1)
-          .map((x, i) => (
-            <li key={i}>
-              <CardSkeleton />
-            </li>
-          ))
+        <ListSkeleton length={10}>
+          <CardSkeleton />
+        </ListSkeleton>
       ) : crew.isError ? (
         <p>Sorry an error has occured</p>
       ) : (
