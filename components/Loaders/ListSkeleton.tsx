@@ -1,12 +1,4 @@
-import { ReactNode } from "react";
-
-type Props = {
-  length: number;
-  children: ReactNode;
-  vertical?: boolean;
-  centered?: boolean;
-  wrap?: boolean;
-};
+import { ListSkeleton } from "@/types/components";
 
 /**
  * @props length this is the length of the mapped array
@@ -20,7 +12,7 @@ const ListSkeleton = ({
   centered,
   wrap,
   children,
-}: Props) => {
+}: ListSkeleton) => {
   return (
     <div className="w-full">
       <ul
@@ -34,7 +26,7 @@ const ListSkeleton = ({
         {Array(length)
           .fill(1)
           .map((x, i) => (
-            <li>{children}</li>
+            <li key={i}>{children}</li>
           ))}
       </ul>
     </div>

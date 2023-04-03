@@ -1,15 +1,11 @@
-type Props = {
-  width: number | string;
-  height: number | string;
-  light?: boolean;
-};
+import { Skeleton } from "@/types/components";
 
 /**
  * @props width - width of the element
  * @props height - height of the element
  * @props optionnal - light: background color of the element
  */
-const Skeleton = ({ width, height, light }: Props) => {
+const Skeleton = ({ width, height, light }: Skeleton) => {
   return (
     <div
       className={`${
