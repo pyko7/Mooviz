@@ -28,7 +28,7 @@ const GenresList = ({ genres }: GenresList) => {
             Popular movies
           </button>
         </li>
-        {genres.map((genre: any) => (
+        {genres.map((genre) => (
           <li key={genre.id}>
             <button
               type="button"
