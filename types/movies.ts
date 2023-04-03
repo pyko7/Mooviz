@@ -7,7 +7,7 @@ export interface MovieGenre {
 
 export interface MoviesResults {
   page: number;
-  results: HomepageMovies[];
+  results: Movie[];
   total_pages: number;
   total_results: number;
 }
@@ -18,7 +18,7 @@ export interface GenresList {
 
 export interface PopularMoviesByGenre {
   genre: string;
-  movies: HomepageMovies[];
+  movies: Movie[];
 }
 
 export interface MoviesProvider {
@@ -29,7 +29,7 @@ export interface MoviesProvider {
   lighten_color: string;
 }
 
-export interface HomepageMovies {
+export interface Movie {
   backdrop_path: string;
   poster_path: string;
   title: string;
@@ -37,12 +37,14 @@ export interface HomepageMovies {
   id: number;
 }
 
-export interface HomepageMoviesList {
-  movies: HomepageMovies[];
+export interface MoviesList {
+  movies: Movie[];
+  handleClose?: () => void;
 }
 
 export interface MovieCard {
-  movie: HomepageMovies;
+  movie: Movie;
+  handleClose?: () => void;
 }
 
 export interface MovieById {
@@ -59,7 +61,7 @@ export interface MovieStats {
   minutes: number;
 }
 
-export interface MoviesDetails extends HomepageMovies {
+export interface MoviesDetails extends Movie {
   genres: MovieGenre[];
   vote_average: number;
   vote_count: number;

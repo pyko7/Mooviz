@@ -1,9 +1,9 @@
 import { ListType } from "@/types/components";
-import { HomepageMoviesList } from "@/types/movies";
+import { MoviesList } from "@/types/movies";
 import MovieCard from "../Cards/MovieCard";
 import HorizontalScrollingList from "./HorizontalScrollingList";
 
-const MoviesListByGenre = ({ movies }: HomepageMoviesList) => {
+const MoviesListByGenre = ({ movies }: MoviesList) => {
   return (
     <HorizontalScrollingList scroll={650} type={ListType.Image}>
       {movies?.map((movie) => (

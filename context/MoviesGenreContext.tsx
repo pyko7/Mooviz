@@ -1,5 +1,5 @@
 import { ChildrenProps, GenreContext } from "@/types/context";
-import { HomepageMovies, PopularMoviesByGenre } from "@/types/movies";
+import { Movie, PopularMoviesByGenre } from "@/types/movies";
 import { getGenresList } from "@/utils/api/getGenresList";
 import { getMoviesByGenre } from "@/utils/api/getMoviesByGenre";
 import { getWeeklyPopularMovies } from "@/utils/api/getWeeklyPopularMovies";
@@ -15,7 +15,7 @@ export const useGenreContext = () => {
 const GenreProvider = ({ children }: ChildrenProps) => {
   const [genreId, setGenreId] = useState(0);
   const [activeTabIndex, setActiveTabIndex] = useState(0);
-  const [moviesList, setMoviesList] = useState<HomepageMovies[]>([]);
+  const [moviesList, setMoviesList] = useState<Movie[]>([]);
 
   const [popularMoviesByGenre, setPopularMoviesByGenre] = useState<
     PopularMoviesByGenre[]
