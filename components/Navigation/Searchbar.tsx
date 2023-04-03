@@ -2,10 +2,11 @@ import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { useQuery } from "@tanstack/react-query";
 import { getMoviesBySearch } from "@/utils/api/getMoviesBySearch";
-import LoadingSpinner from "../Loaders/LoadingSpinner";
 import { ChangeEvent, useState } from "react";
 import MovieList from "../Lists/MovieList";
 import { HandleSearchBarProps } from "@/types/header";
+import ListSkeleton from "../Loaders/ListSkeleton";
+import Skeleton from "../Loaders/Skeleton";
 
 const SearchBar = ({ searchBar, setSearchBar }: HandleSearchBarProps) => {
   const [search, setSearch] = useState("");
@@ -61,20 +62,20 @@ const SearchBar = ({ searchBar, setSearchBar }: HandleSearchBarProps) => {
 
       <div className="fixed top-0 left-0 w-full min-h-screen flex justify-center py-10 px-8 z-50 bg-neutral-900 shadow-[inset_0_25px_50px_-12px_rgba(0,0,0,0.35)]">
         {isLoading ? (
-          <LoadingSpinner />
+          <div className="w-full max-w-[1920px] pt-24 px-14">
+            <ListSkeleton length={20} wrap>
+              <Skeleton height={250} width={250} />
+            </ListSkeleton>
+          </div>
         ) : isError ? (
           <p className="text-center italic">
             Sorry, an error has occured. Unfortunately, this content isn&apos;t
             available.
           </p>
         ) : (
-          <div className="w-full max-w-[1920px] py-10 px-14">
+          <div className="w-full max-w-[1920px] pt-24 px-14">
             {search && (
-              <MovieList
-                movies={data.results}
-                search={search}
-                removeSearch={setSearch}
-              />
+              <MovieList movies={data.results} handleClose={handleClose} />
             )}
           </div>
         )}

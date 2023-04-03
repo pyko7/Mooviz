@@ -3,7 +3,7 @@ import Link from "next/link";
 import defaultPoster from "@/public/assets/default_movie.webp";
 import { MovieCard } from "@/types/movies";
 
-const MovieCard = ({ movie }: MovieCard) => {
+const MovieCard = ({ movie, handleClose }: MovieCard) => {
   return (
     <Link
       href={{
@@ -13,6 +13,7 @@ const MovieCard = ({ movie }: MovieCard) => {
       as={`/movies/${movie.id}`}
       aria-label={movie.title}
       className="rounded-md"
+      onClick={handleClose}
     >
       {movie.poster_path !== null ? (
         <Image
