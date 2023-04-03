@@ -15,6 +15,7 @@ export interface Skeleton {
   width: number | string;
   height: number | string;
   light?: boolean;
+  circle?: boolean;
 }
 
 export interface ListSkeleton {

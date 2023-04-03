@@ -3,13 +3,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import LoadingSpinner from "@/components/Loaders/LoadingSpinner";
 import MovieList from "@/components/Lists/MovieList";
 import ProgressBar from "@/components/ProgressBar";
 import ActorList from "@/components/Lists/ActorList";
 import CrewList from "@/components/Lists/CrewList";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 import { useGetMovieById } from "@/hooks/useGetMovieById";
+import Skeleton from "@/components/Loaders/Skeleton";
+import MoviePageSkeleton from "@/components/Loaders/MoviePageSkeleton";
+import ListSkeleton from "@/components/Loaders/ListSkeleton";
 
 const MovieById = () => {
   const [mobile, setMobile] = useState(false);
@@ -41,7 +43,7 @@ const MovieById = () => {
 
       <section className="w-full">
         {details.isLoading ? (
-          <LoadingSpinner />
+          <MoviePageSkeleton />
         ) : details.isError ? (
           <p className="text-center italic">
             Sorry, an error has occured. Unfortunately, this content isn&apos;t
@@ -64,7 +66,7 @@ const MovieById = () => {
             </div>
 
             <div
-              className="absolute top-1/2 -translate-y-1/2 left-0 w-full px-20 flex flex-col gap-6 z-10 xl:px-10 
+              className="absolute top-1/2 -translate-y-1/2 left-0 w-full px-20 flex flex-col gap-6 z-10 xl:px-10
                 sm:top-3/4 sm:left-1/2 sm:-translate-x-1/2 sm:items-center sm:px-4 sm:gap-3 sm:bg-gradientBlackLgBottom"
             >
               <h1 className="w-full text-3xl font-bold line-clamp-1 sm:text-2xl sm:text-center sm:line-clamp-none">
@@ -152,19 +154,23 @@ const MovieById = () => {
         </div>
         <div className="w-full px-20  lg:px-6">
           {similarMovies.isLoading ? (
-            <LoadingSpinner />
+            <div className="w-full pt-24">
+              <ListSkeleton length={20} wrap>
+                <Skeleton height={250} width={250} />
+              </ListSkeleton>
+            </div>
           ) : similarMovies.isError ? (
             <p className="text-center italic">
               Sorry, an error has occured. Unfortunately, this content
               isn&apos;t available.
             </p>
           ) : (
-            <div>
+            <>
               <h2 className="mb-8 text-xl tracking-wide uppercase font-bold">
                 Similar movies
               </h2>
               <MovieList movies={similarMovies.data.results.slice(0, 18)} />
-            </div>
+            </>
           )}
         </div>
       </section>
