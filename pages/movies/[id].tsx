@@ -12,15 +12,22 @@ import { useGetMovieById } from "@/hooks/useGetMovieById";
 import Skeleton from "@/components/Loaders/Skeleton";
 import MoviePageSkeleton from "@/components/Loaders/MoviePageSkeleton";
 import ListSkeleton from "@/components/Loaders/ListSkeleton";
+import { ProviderFlatrate } from "@/types/movies";
 
 const MovieById = () => {
   const [mobile, setMobile] = useState(false);
-
+  const [providers, setProviders] = useState<ProviderFlatrate[]>([]);
   const { query } = useRouter();
   const movieId = parseInt(query.id as string);
 
-  const { details, movieStats, credits, videos, similarMovies } =
-    useGetMovieById(movieId);
+  const {
+    details,
+    movieStats,
+    credits,
+    videos,
+    similarMovies,
+    movieProviders,
+  } = useGetMovieById(movieId);
 
   useEffect(() => {
     const getWindowSize = () => {
@@ -30,6 +37,16 @@ const MovieById = () => {
     };
     getWindowSize();
   }, []);
+
+  useEffect(() => {
+    if (
+      typeof movieProviders.data !== "undefined" &&
+      typeof movieProviders.data.results.FR !== "undefined"
+    ) {
+      setProviders(movieProviders.data.results.FR.flatrate);
+    }
+    return;
+  }, [movieProviders.data]);
 
   return (
     <>
@@ -120,6 +137,21 @@ const MovieById = () => {
               <p className="w-2/3 max-w-xl line-clamp-4 lg:text-base md:w-4/5 md:max-w-none md:text-sm sm:line-clamp-none">
                 {details.data.overview}
               </p>
+              {providers.length === 0 ? null : (
+                <div className="w-2/3 max-w-x flex gap-2 md:w-4/5 md:max-w-none">
+                  {providers.map((provider) => (
+                    <Image
+                      aria-label={`Available on ${provider.provider_name}`}
+                      width={50}
+                      height={50}
+                      src={`https://image.tmdb.org/t/p/original/${provider.logo_path}`}
+                      alt={provider.provider_name}
+                      className="sm:w-10 sm:h-10"
+                    />
+                  ))}
+                </div>
+              )}
+
               {!videos ? null : (
                 <a
                   href={`https://www.${videos.site}.com/watch?v=${videos.key}`}

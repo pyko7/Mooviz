@@ -1,6 +1,7 @@
 import { MovieById, MovieStats, VideoProps } from "@/types/movies";
 import { getMovieById } from "@/utils/api/getMovieById";
 import { getMovieCredits } from "@/utils/api/getMovieCredits";
+import { getMovieProvider } from "@/utils/api/getMovieProvider";
 import { getMovieVideo } from "@/utils/api/getMovieVideo";
 import { getSimilarMovies } from "@/utils/api/getSimilarMovies";
 import { getMovieStats } from "@/utils/getMovieStats";
@@ -21,6 +22,9 @@ export const useGetMovieById = (movieId: number): MovieById => {
   );
   const similarMovies = useQuery(["movies", movieId], () =>
     getSimilarMovies(movieId)
+  );
+  const movieProviders = useQuery(["providers", movieId], () =>
+    getMovieProvider(movieId)
   );
 
   const video = useQuery(["movieVideo", movieId], () => getMovieVideo(movieId));
@@ -48,5 +52,6 @@ export const useGetMovieById = (movieId: number): MovieById => {
     credits,
     videos,
     similarMovies,
+    movieProviders
   };
 };

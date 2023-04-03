@@ -53,6 +53,7 @@ export interface MovieById {
   movieStats: MovieStats;
   videos: VideoProps | undefined;
   similarMovies: UseQueryResult<MoviesResults>;
+  movieProviders: UseQueryResult<MovieProviderResults>;
 }
 
 export interface MovieStats {
@@ -100,4 +101,21 @@ export interface VideoProps {
 export interface VideosResults {
   id: number;
   results: VideoProps[];
+}
+
+export interface ProviderFlatrate {
+  provider_name: string;
+  logo_path: string;
+  provider_id: number;
+}
+
+export interface Provider {
+  flatrate: ProviderFlatrate[];
+}
+
+export interface MovieProviderResults {
+  id: number;
+  results: {
+    FR: Provider;
+  };
 }
