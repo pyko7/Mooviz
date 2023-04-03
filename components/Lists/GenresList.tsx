@@ -1,25 +1,15 @@
+import { useGenreContext } from "@/context/MoviesGenreContext";
 import { ListType } from "@/types/components";
-import { GenresListMoviesPage } from "@/types/movies";
-import { getMoviesByGenre } from "@/utils/api/getMoviesByGenre";
-import { useState } from "react";
+import { GenresList } from "@/types/movies";
 import HorizontalScrollingList from "./HorizontalScrollingList";
 
-const GenresList = ({
-  genres,
-  setMoviesList,
-  handlePopularMovies,
-}: GenresListMoviesPage) => {
-  const [active, setActive] = useState(0);
+const GenresList = ({ genres }: GenresList) => {
+  const { getMoviesListByGenre, activeTabIndex, setActiveTabIndex } =
+    useGenreContext();
 
-  const handleClick = async (genreId: number) => {
-    if (genreId === 0) {
-      handlePopularMovies();
-      setActive(0);
-      return;
-    }
-    const movies = await getMoviesByGenre(genreId);
-    setMoviesList(movies.results);
-    setActive(genreId);
+  const handleClick = (genreId: number) => {
+    getMoviesListByGenre(genreId);
+    return setActiveTabIndex(genreId);
   };
 
   return (
@@ -29,7 +19,9 @@ const GenresList = ({
           <button
             type="button"
             className={`${
-              active === 0 ? "font-bold  text-white" : "text-neutral-400"
+              activeTabIndex === 0
+                ? "font-bold  text-white"
+                : "text-neutral-400"
             }  whitespace-nowrap  uppercase`}
             onClick={() => handleClick(0)}
           >
@@ -41,7 +33,7 @@ const GenresList = ({
             <button
               type="button"
               className={`${
-                active === genre.id
+                activeTabIndex === genre.id
                   ? "font-bold text-white"
                   : "text-neutral-400"
               }  whitespace-nowrap uppercase`}

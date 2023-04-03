@@ -1,63 +1,49 @@
-import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import Carousel from "../components/Carousel";
-import { getWeeklyPopularMovies } from "@/utils/api/getWeeklyPopularMovies";
-import { getGenresList } from "../utils/api/getGenresList";
-import { getMoviesByGenre } from "../utils/api/getMoviesByGenre";
-import { PopularMoviesByGenre } from "@/types/movies";
 import ProvidersList from "@/components/Lists/ProvidersList";
 import MoviesListByGenre from "@/components/Lists/MoviesListByGenre";
-import Link from "next/link";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import CarouselSkeleton from "@/components/Loaders/CarouselSkeleton";
 import ListByGenreSkeleton from "@/components/Loaders/ListByGenreSkeleton";
+import { useGenreContext } from "@/context/MoviesGenreContext";
+import { useRouter } from "next/router";
+import { getMoviesByGenre } from "@/utils/api/getMoviesByGenre";
 
 export default function Home() {
-  const [popularMoviesByGenre, setPopularMoviesByGenre] = useState<
-    PopularMoviesByGenre[]
-  >([]);
+  const {
+    genresList,
+    popularMoviesByGenre,
+    popularMovies,
+    getGenreId,
+    getPopularMovies,
+    setMoviesList,
+    setActiveTabIndex,
+  } = useGenreContext();
+  const { push } = useRouter();
 
-  const moviesList = useQuery(["carousel"], getWeeklyPopularMovies, {
-    staleTime: 30 * (60 * 1000), // 30 mins
-    cacheTime: 45 * (60 * 1000), // 45 mins
-  });
-  const genresList = useQuery(["genres"], getGenresList, {
-    staleTime: 30 * (60 * 1000), // 30 mins
-    cacheTime: 45 * (60 * 1000), // 45 mins
-  });
-
-  useEffect(() => {
-    const getPopularMoviesByGenre = async () => {
-      if (typeof genresList.data === "undefined") {
-        return;
-      }
-      for (const genre of genresList.data.genres) {
-        const moviesByGenre = await getMoviesByGenre(genre.id);
-
-        setPopularMoviesByGenre((popularMoviesByGenre) => [
-          ...popularMoviesByGenre,
-          {
-            genre: genre.name,
-            movies: moviesByGenre.results,
-          },
-        ]);
-      }
-    };
-    getPopularMoviesByGenre();
-  }, [genresList.data]);
+  const handleClick = async (genreName: string) => {
+    const genreId = getGenreId(genreName);
+    if (!genreId) {
+      getPopularMovies();
+    } else {
+      const movies = await getMoviesByGenre(genreId);
+      setMoviesList(movies.results);
+      setActiveTabIndex(genreId);
+    }
+    return push("/movies");
+  };
 
   return (
     <>
       <section className="w-full">
-        {moviesList.isLoading ? (
+        {popularMovies.isLoading ? (
           <CarouselSkeleton />
-        ) : moviesList.isError ? (
+        ) : popularMovies.isError ? (
           <p className="text-center italic">
             Sorry, an error has occured. Unfortunately, this content isn&apos;t
             available.
           </p>
         ) : (
-          <Carousel movies={moviesList.data.results} />
+          <Carousel movies={popularMovies.data.results} />
         )}
       </section>
 
@@ -80,17 +66,15 @@ export default function Home() {
               <h2 className="text-2xl font-bold xl:text-xl sm:text-lg">
                 {movies.genre}
               </h2>
-              <Link
-                href={{
-                  pathname: "/movies/genre/[id]",
-                  query: { id: movies.genre, name: movies.genre },
-                }}
-                as={`/movies/genre/${movies.genre}`}
-                className="w-fit flex items-center gap-x-1 font-medium hover:underline sm:text-lg"
+              <button
+                type="button"
+                role="link"
+                className="w-fit flex items-center gap-x-1 font-medium uppercase hover:underline sm:text-lg"
+                onClick={() => handleClick(movies.genre)}
               >
-                <p>See all</p>
+                See all
                 <ChevronRightIcon aria-hidden="true" className="w-5 h-5" />
-              </Link>
+              </button>
             </div>
             <MoviesListByGenre movies={movies.movies} />
           </div>

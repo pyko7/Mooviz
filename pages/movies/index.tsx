@@ -1,38 +1,26 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import Head from "next/head";
-import { useQuery } from "@tanstack/react-query";
-import { getGenresList } from "@/utils/api/getGenresList";
-import { getWeeklyPopularMovies } from "@/utils/api/getWeeklyPopularMovies";
-import LoadingSpinner from "../../components/Loaders/LoadingSpinner";
 import MovieList from "../../components/Lists/MovieList";
 import GenresList from "@/components/Lists/GenresList";
-import { HomepageMovies } from "@/types/movies";
 import Skeleton from "@/components/Loaders/Skeleton";
 import ListSkeleton from "@/components/Loaders/ListSkeleton";
 import PosterSkeleton from "@/components/Loaders/PosterSkeleton";
+import { useGenreContext } from "@/context/MoviesGenreContext";
 
 const Movies = () => {
-  const [moviesList, setMoviesList] = useState<HomepageMovies[]>([]);
-
-  const genresList = useQuery(["genres"], getGenresList, {
-    staleTime: 30 * (60 * 1000), // 30 mins
-    cacheTime: 45 * (60 * 1000), // 45 mins
-  });
-  const popularMovies = useQuery(["movies"], getWeeklyPopularMovies, {
-    staleTime: 30 * (60 * 1000), // 30 mins
-    cacheTime: 45 * (60 * 1000), // 45 mins
-  });
-
-  const handlePopularMovies = useCallback(() => {
-    if (typeof popularMovies.data !== "undefined") {
-      setMoviesList(popularMovies.data.results);
-    }
-    return;
-  }, [popularMovies.data]);
+  const {
+    activeTabIndex,
+    genresList,
+    popularMovies,
+    moviesList,
+    getPopularMovies,
+  } = useGenreContext();
 
   useEffect(() => {
-    handlePopularMovies();
-  }, [handlePopularMovies]);
+    if (moviesList.length === 0 || activeTabIndex === 0) {
+      getPopularMovies();
+    }
+  }, [moviesList.length, activeTabIndex, getPopularMovies]);
 
   return (
     <>
@@ -58,11 +46,7 @@ const Movies = () => {
         ) : genresList.isError ? (
           <h1>Error</h1>
         ) : (
-          <GenresList
-            genres={genresList.data.genres}
-            setMoviesList={setMoviesList}
-            handlePopularMovies={handlePopularMovies}
-          />
+          <GenresList genres={genresList.data.genres} />
         )}
 
         <div className="w-full mt-10">
