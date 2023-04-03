@@ -7,6 +7,8 @@ import ListByGenreSkeleton from "@/components/Loaders/ListByGenreSkeleton";
 import { useGenreContext } from "@/context/MoviesGenreContext";
 import { useRouter } from "next/router";
 import { getMoviesByGenre } from "@/utils/api/getMoviesByGenre";
+import { useProvidersContext } from "@/context/ProdiversContext";
+import { useEffect } from "react";
 
 export default function Home() {
   const {
@@ -18,6 +20,8 @@ export default function Home() {
     setMoviesList,
     setActiveTabIndex,
   } = useGenreContext();
+  const { setProvider, setPopularMoviesByGenre: setMoviesByProvider } =
+    useProvidersContext();
   const { push } = useRouter();
 
   const handleClick = async (genreName: string) => {
@@ -31,6 +35,11 @@ export default function Home() {
     }
     return push("/movies");
   };
+
+  useEffect(() => {
+    setProvider("");
+    setMoviesByProvider([]);
+  }, [setProvider, setMoviesByProvider]);
 
   return (
     <>

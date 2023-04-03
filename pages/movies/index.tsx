@@ -25,7 +25,7 @@ const Movies = () => {
   return (
     <>
       <Head>
-        <title>Genres</title>
+        <title>Genres - Mooviz</title>
         <meta
           name="description"
           content="Select the genre you like or discover the most popular movies of the moment"

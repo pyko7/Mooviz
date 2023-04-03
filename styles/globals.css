@@ -27,4 +27,7 @@
   .poster_container::before {
     @apply content-[''] absolute top-0 left-0 w-full h-full z-[5] bg-gradientBlackSm xl:bg-gradientBlackMd  sm:bg-gradientBlackLgBottom;
   }
+  .provider_banner::before {
+    @apply content-[''] absolute top-0 left-0 w-full h-full z-[5] bg-gradientDarkNeutralBottom xl:bg-gradientBlackMd  sm:bg-gradientBlackLgBottom;
+  }
 }

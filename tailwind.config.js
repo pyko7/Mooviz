@@ -21,6 +21,8 @@ module.exports = {
           "linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 80%)",
         gradientBlackTop:
           "linear-gradient(0deg,rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 1) 100%)",
+        gradientDarkNeutralBottom:
+          "linear-gradient(rgba(38, 38, 38, 0) 60%, rgba(38, 38, 38, 1) 100%)",
       },
       keyframes: {
         fadeInOut: {

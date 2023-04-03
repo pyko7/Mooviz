@@ -24,9 +24,9 @@ export interface PopularMoviesByGenre {
 export interface MoviesProvider {
   id: number;
   provider_name: string;
-  logo_path: string;
   main_color: string;
   lighten_color: string;
+  query_name: string;
 }
 
 export interface Movie {
