@@ -23,6 +23,7 @@ const ProviderCard = ({
         background: `linear-gradient(60deg, ${main_color} 60%, ${lighten_color} 100%)`,
       }}
       onClick={handleClick}
+      aria-label={provider_name}
     >
       <p>{provider_name}</p>
     </Link>

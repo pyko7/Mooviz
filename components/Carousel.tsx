@@ -75,7 +75,7 @@ const Carousel = ({ movies }: MoviesList) => {
                   className="w-full max-w-xs py-4 mt-12 text-center bg-red-600 rounded-md uppercase font-bold shadow-md
                 hover:bg-red-500 sm:py-3 sm:w-4/5 sm:mt-4 sm:mx-auto"
                 >
-                  See details
+                  Voir les détails
                 </Link>
               </div>
             </div>

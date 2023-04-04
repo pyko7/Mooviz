@@ -160,9 +160,9 @@ const MovieById = () => {
                   target="_blank"
                   referrerPolicy="no-referrer"
                   rel="noopener"
-                  aria-label="open external link"
+                  aria-label="Ouvre un lien externe vers la bande annonce"
                 >
-                  See trailer
+                  Voir la bande-annonce
                   <ArrowTopRightOnSquareIcon
                     className="w-5 h-5"
                     aria-hidden="true"
@@ -199,7 +199,7 @@ const MovieById = () => {
           ) : (
             <>
               <h2 className="mb-8 text-xl tracking-wide uppercase font-bold">
-                Similar movies
+                Films similaires
               </h2>
               <MovieList movies={similarMovies.data.results.slice(0, 18)} />
             </>

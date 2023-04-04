@@ -18,6 +18,7 @@ const GenresList = ({ genres }: GenresList) => {
         <li>
           <button
             type="button"
+            aria-label="Films les plus populaires"
             className={`${
               activeTabIndex === 0
                 ? "font-bold  text-white"
@@ -32,6 +33,7 @@ const GenresList = ({ genres }: GenresList) => {
           <li key={genre.id}>
             <button
               type="button"
+              aria-label={`Films ${genre.name}`}
               className={`${
                 activeTabIndex === genre.id
                   ? "font-bold text-white"

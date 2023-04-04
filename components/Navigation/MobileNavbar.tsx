@@ -6,7 +6,7 @@ import Link from "next/link";
 const MobileNavbar = ({ isOpen, setIsOpen }: MobileNavbarProps) => {
   return (
     <Transition show={isOpen}>
-      <Dialog onClose={() => setIsOpen(false)}>
+      <Dialog aria-label="Menu" onClose={() => setIsOpen(false)}>
         <Transition.Child
           enter="ease-linear duration-300"
           enterFrom="opacity-0"
@@ -36,7 +36,7 @@ const MobileNavbar = ({ isOpen, setIsOpen }: MobileNavbarProps) => {
             <Dialog.Panel className="w-full h-screen p-6">
               <div className="w-full flex flex-row-reverse mb-10">
                 <button
-                  aria-label="Close navigation modal"
+                  aria-label="Fermer menu"
                   onClick={() => setIsOpen(false)}
                   className="w-9 h-9 text-secondary"
                 >
@@ -48,12 +48,12 @@ const MobileNavbar = ({ isOpen, setIsOpen }: MobileNavbarProps) => {
                 <ul className="w-full flex flex-col gap-y-6 items-start text-secondary font-semibold text-base">
                   <li>
                     <Link href="/" onClick={() => setIsOpen(false)}>
-                      Home
+                      Accueil
                     </Link>
                   </li>
                   <li>
                     <Link href="/movies" onClick={() => setIsOpen(false)}>
-                      Movies
+                      Films
                     </Link>
                   </li>
                 </ul>

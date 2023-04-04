@@ -58,7 +58,7 @@ export default function Home() {
 
       <section className="w-full py-6 px-4">
         <h2 className="text-2xl uppercase font-bold xl:text-xl sm:text-lg">
-          Providers
+          Plateformes
         </h2>
         <ProvidersList />
 
@@ -81,7 +81,7 @@ export default function Home() {
                 className="w-fit flex items-center gap-x-1 font-medium uppercase hover:underline sm:text-lg"
                 onClick={() => handleClick(movies.genre)}
               >
-                See all
+                Voir plus
                 <ChevronRightIcon aria-hidden="true" className="w-5 h-5" />
               </button>
             </div>

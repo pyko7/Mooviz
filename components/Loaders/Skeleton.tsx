@@ -9,6 +9,7 @@ import { Skeleton } from "@/types/components";
 const Skeleton = ({ width, height, light, circle }: Skeleton) => {
   return (
     <div
+      aria-label="Chargement"
       className={`${!light ? "bg-neutral-700" : " bg-neutral-400"} 
       ${circle ? "rounded-[50%]" : "rounded-md"}
       animate-pulse `}

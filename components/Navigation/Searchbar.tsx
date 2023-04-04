@@ -32,7 +32,7 @@ const SearchBar = ({ searchBar, setSearchBar }: HandleSearchBarProps) => {
       <div className="absolute left-0 w-full px-10 py-6 flex items-center gap-6 z-[100] border-b-[1px] border-b-white md:top-0 md:px-6 sm:py-4">
         <button
           className="w-8 h-8 text-neutral-200 cursor-pointer hover:text-white sm:w-7 sm:h-7"
-          aria-label="Close search page"
+          aria-label="Fermer la recherche"
           onClick={handleClose}
         >
           <ArrowLeftIcon aria-hidden="true" />
@@ -41,7 +41,7 @@ const SearchBar = ({ searchBar, setSearchBar }: HandleSearchBarProps) => {
           autoFocus
           type="text"
           id="searchbar"
-          placeholder="Search"
+          placeholder="Rechercher"
           value={search}
           className={`${
             searchBar ? "block" : "hidden"
@@ -52,7 +52,7 @@ const SearchBar = ({ searchBar, setSearchBar }: HandleSearchBarProps) => {
         {search ? (
           <button
             className="absolute right-40 w-8 h-8 text-neutral-200 cursor-pointer hover:text-white xl:right-20 md:right-4 sm:w-6 sm:h-6"
-            aria-label="Reset text field value"
+            aria-label="Réinitialiser le champ de texte"
             onClick={handleReset}
           >
             <XMarkIcon aria-hidden="true" />

@@ -28,13 +28,13 @@ const Movies = () => {
         <title>Genres - Mooviz</title>
         <meta
           name="description"
-          content="Select the genre you like or discover the most popular movies of the moment"
+          content="Choisissez le genre que vous aimez ou découvrez les films populaires du moment"
         />
         {/* Open Graph */}
         <meta property="og:title" content="Genres" />
         <meta
           property="og:description"
-          content="Select the genre you like or discover the most popular movies of the moment"
+          content="Choisissez le genre que vous aimez ou découvrez les films populaires du moment"
         />
       </Head>
 

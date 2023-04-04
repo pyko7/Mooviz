@@ -25,7 +25,11 @@ const Header = () => {
       </Link>
       <div className="w-full h-full flex items-center gap-6 md:hidden">
         <Navbar />
-        <button type="button" aria-label="Search content" onClick={handleClick}>
+        <button
+          type="button"
+          aria-label="Barre de recherche"
+          onClick={handleClick}
+        >
           <MagnifyingGlassIcon
             aria-hidden="true"
             className="w-7 h-7 cursor-pointer"
@@ -35,7 +39,11 @@ const Header = () => {
       </div>
 
       <div className="hidden md:w-fit md:flex md:gap-10">
-        <button type="button" aria-label="Search content" onClick={handleClick}>
+        <button
+          type="button"
+          aria-label="Barre de recherche"
+          onClick={handleClick}
+        >
           <MagnifyingGlassIcon
             aria-hidden="true"
             className="w-7 h-7 cursor-pointer"
@@ -43,7 +51,7 @@ const Header = () => {
         </button>
         <button
           type="button"
-          aria-label="Open navigation menu"
+          aria-label="Menu"
           className="w-8 h-8"
           onClick={() => setIsOpen(true)}
         >

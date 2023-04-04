@@ -13,7 +13,7 @@ const HorizontalScrollingList = ({
     <div className="relative w-full">
       {scrollX !== 0 ? (
         <button
-          name="Scroll through list to the left"
+          name="Faire défiler vers la gauche"
           aria-label="Scroll to left"
           className={`absolute left-0 top-1/2 -translate-y-1/2
           ${
@@ -34,7 +34,7 @@ const HorizontalScrollingList = ({
       </ul>
       {!scrollEnd ? (
         <button
-          name="Scroll through list to the right"
+          name="Faire défiler vers la droite"
           aria-label="Scroll to right"
           className={`absolute right-0 top-1/2 -translate-y-1/2
           ${
