@@ -147,6 +147,7 @@ const MovieById = () => {
                       src={`https://image.tmdb.org/t/p/original/${provider.logo_path}`}
                       alt={provider.provider_name}
                       className="sm:w-10 sm:h-10"
+                      key={provider.provider_id}
                     />
                   ))}
                 </div>

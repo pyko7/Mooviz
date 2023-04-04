@@ -7,7 +7,7 @@ const Custom404 = () => {
       <h1 className="text-9xl font-bold">Oops</h1>
       <p className="mt-8 text-4xl">Page inexistante</p>
       <p className="text-2xl">
-        La page que vous recherchez n'existe pas. Elle a pu être déplacée ou
+        La page que vous recherchez n&apos;existe pas. Elle a pu être déplacée ou
         supprimée.
       </p>
       <Link
