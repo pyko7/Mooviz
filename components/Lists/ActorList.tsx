@@ -5,6 +5,7 @@ import HorizontalScrollingList from "./HorizontalScrollingList";
 import { ListType } from "@/types/components";
 import ListSkeleton from "../Loaders/ListSkeleton";
 import CardSkeleton from "../Loaders/CardSkeleton";
+import ErrorMessage from "../Errors/ErrorMessage";
 
 const ActorList = ({ actors }: { actors: UseQueryResult<MovieCredits> }) => {
   return (
@@ -14,7 +15,9 @@ const ActorList = ({ actors }: { actors: UseQueryResult<MovieCredits> }) => {
           <CardSkeleton />
         </ListSkeleton>
       ) : actors.isError ? (
-        <p>Sorry an error has occured</p>
+        <div className="w-full m-auto mt-10 py-10">
+          <ErrorMessage />
+        </div>
       ) : (
         <>
           {actors.data?.cast.slice(0, 10).map((actor) => (

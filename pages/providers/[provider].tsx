@@ -6,6 +6,7 @@ import ProviderBanner from "@/components/ProviderBanner";
 import { providersList } from "@/utils/providersList";
 import { useProvidersContext } from "@/context/ProdiversContext";
 import Head from "next/head";
+import ErrorMessage from "@/components/Errors/ErrorMessage";
 
 const ProviderPage = () => {
   const { genresList } = useGenreContext();
@@ -36,10 +37,9 @@ const ProviderPage = () => {
         <div className="w-full py-6 px-4">
           {genresList.isLoading ? <ListByGenreSkeleton /> : null}
           {genresList.isError ? (
-            <p className="text-center italic">
-              Sorry, an error has occured. Unfortunately, this content
-              isn&apos;t available.
-            </p>
+            <div className="min-h-screen py-10">
+              <ErrorMessage />
+            </div>
           ) : null}
           {popularMoviesByGenre?.map((movies) => (
             <div className="w-full" key={movies.genre}>

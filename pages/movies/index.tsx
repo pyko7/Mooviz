@@ -6,6 +6,7 @@ import Skeleton from "@/components/Loaders/Skeleton";
 import ListSkeleton from "@/components/Loaders/ListSkeleton";
 import PosterSkeleton from "@/components/Loaders/PosterSkeleton";
 import { useGenreContext } from "@/context/MoviesGenreContext";
+import ErrorMessage from "@/components/Errors/ErrorMessage";
 
 const Movies = () => {
   const {
@@ -44,7 +45,9 @@ const Movies = () => {
             <Skeleton width={"100%"} height={50} />
           </div>
         ) : genresList.isError ? (
-          <h1>Error</h1>
+          <div className="mt-10 py-10">
+            <ErrorMessage />
+          </div>
         ) : (
           <GenresList genres={genresList.data.genres} />
         )}
@@ -55,10 +58,9 @@ const Movies = () => {
               <PosterSkeleton />
             </ListSkeleton>
           ) : popularMovies.isError ? (
-            <p className="text-center italic">
-              Sorry, an error has occured. Unfortunately, this content
-              isn&apos;t available.
-            </p>
+            <div className="mt-10 py-10">
+              <ErrorMessage />
+            </div>
           ) : (
             <MovieList movies={moviesList} />
           )}

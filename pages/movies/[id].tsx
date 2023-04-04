@@ -13,6 +13,7 @@ import Skeleton from "@/components/Loaders/Skeleton";
 import MoviePageSkeleton from "@/components/Loaders/MoviePageSkeleton";
 import ListSkeleton from "@/components/Loaders/ListSkeleton";
 import { ProviderFlatrate } from "@/types/movies";
+import ErrorMessage from "@/components/Errors/ErrorMessage";
 
 const MovieById = () => {
   const [mobile, setMobile] = useState(false);
@@ -62,10 +63,9 @@ const MovieById = () => {
         {details.isLoading ? (
           <MoviePageSkeleton />
         ) : details.isError ? (
-          <p className="text-center italic">
-            Sorry, an error has occured. Unfortunately, this content isn&apos;t
-            available.
-          </p>
+          <div className="mt-24 py-10">
+            <ErrorMessage />
+          </div>
         ) : (
           <div className="relative inline-block w-full">
             <div className="poster_container relative w-full h-[900px] sm:h-auto sm:min-h-screen">
@@ -192,10 +192,9 @@ const MovieById = () => {
               </ListSkeleton>
             </div>
           ) : similarMovies.isError ? (
-            <p className="text-center italic">
-              Sorry, an error has occured. Unfortunately, this content
-              isn&apos;t available.
-            </p>
+            <div className="w-full m-auto mt-10 py-10">
+              <ErrorMessage />
+            </div>
           ) : (
             <>
               <h2 className="mb-8 text-xl tracking-wide uppercase font-bold">

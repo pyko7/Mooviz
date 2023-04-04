@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { getMoviesByGenre } from "@/utils/api/getMoviesByGenre";
 import { useProvidersContext } from "@/context/ProdiversContext";
 import { useEffect } from "react";
+import ErrorMessage from "@/components/Errors/ErrorMessage";
 
 export default function Home() {
   const {
@@ -47,10 +48,9 @@ export default function Home() {
         {popularMovies.isLoading ? (
           <CarouselSkeleton />
         ) : popularMovies.isError ? (
-          <p className="text-center italic">
-            Sorry, an error has occured. Unfortunately, this content isn&apos;t
-            available.
-          </p>
+          <div className="mt-24 py-10">
+            <ErrorMessage />
+          </div>
         ) : (
           <Carousel movies={popularMovies.data.results} />
         )}
@@ -64,10 +64,9 @@ export default function Home() {
 
         {genresList.isLoading ? <ListByGenreSkeleton /> : null}
         {genresList.isError ? (
-          <p className="text-center italic">
-            Sorry, an error has occured. Unfortunately, this content isn&apos;t
-            available.
-          </p>
+          <div className="py-10">
+            <ErrorMessage />
+          </div>
         ) : null}
         {popularMoviesByGenre?.map((movies) => (
           <div className="w-full" key={movies.genre}>
