@@ -19,13 +19,13 @@ const CrewList = ({ crew }: { crew: UseQueryResult<MovieCredits> }) => {
           <ErrorMessage />
         </div>
       ) : (
-        <>
+        <ul className="w-full flex gap-x-5" role="list">
           {crew.data?.crew.slice(0, 10).map((crew) => (
-            <li key={crew.id}>
+            <li role="listitem" key={crew.id}>
               <CrewCard crew={crew} />
             </li>
           ))}
-        </>
+        </ul>
       )}
     </HorizontalScrollingList>
   );

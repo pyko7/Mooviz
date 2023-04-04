@@ -19,13 +19,13 @@ const ActorList = ({ actors }: { actors: UseQueryResult<MovieCredits> }) => {
           <ErrorMessage />
         </div>
       ) : (
-        <>
+        <ul className="w-full flex gap-x-5" role="list">
           {actors.data?.cast.slice(0, 10).map((actor) => (
-            <li key={actor.id}>
+            <li role="listitem" key={actor.id}>
               <ActorCard actor={actor} />
             </li>
           ))}
-        </>
+        </ul>
       )}
     </HorizontalScrollingList>
   );

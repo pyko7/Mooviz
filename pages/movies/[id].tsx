@@ -137,9 +137,9 @@ const MovieById = () => {
               <p className="w-2/3 max-w-xl line-clamp-4 lg:text-base md:w-4/5 md:max-w-none md:text-sm sm:line-clamp-none">
                 {details.data.overview}
               </p>
-              {providers.length === 0 ? null : (
+              {providers?.length === 0 ? null : (
                 <div className="w-2/3 max-w-x flex gap-2 md:w-4/5 md:max-w-none">
-                  {providers.map((provider) => (
+                  {providers?.map((provider) => (
                     <Image
                       aria-label={`Available on ${provider.provider_name}`}
                       width={50}

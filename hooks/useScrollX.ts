@@ -3,7 +3,8 @@ import { useEffect, useRef, useState } from "react";
 export const useScrollX = () => {
   const [scrollX, setScrollX] = useState(0); // For detecting start scroll postion
   const [scrollEnd, setScrollEnd] = useState(false); // For detecting end of scrolling
-  const ref = useRef<HTMLUListElement>(null);
+  // const ref = useRef<HTMLUListElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const handleClick = (scrollOffset: number) => {
     if (!ref.current) {

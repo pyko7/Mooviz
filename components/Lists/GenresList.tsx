@@ -15,36 +15,38 @@ const GenresList = ({ genres }: GenresList) => {
   return (
     <div className="mt-24">
       <HorizontalScrollingList scroll={300} type={ListType.Text}>
-        <li>
-          <button
-            type="button"
-            aria-label="Films les plus populaires"
-            className={`${
-              activeTabIndex === 0
-                ? "font-bold  text-white"
-                : "text-neutral-400"
-            }  whitespace-nowrap  uppercase`}
-            onClick={() => handleClick(0)}
-          >
-            Popular movies
-          </button>
-        </li>
-        {genres.map((genre) => (
-          <li key={genre.id}>
+        <ul className="w-full flex gap-x-5 " role="list">
+          <li role="listitem">
             <button
               type="button"
-              aria-label={`Films ${genre.name}`}
+              aria-label="Films les plus populaires"
               className={`${
-                activeTabIndex === genre.id
-                  ? "font-bold text-white"
+                activeTabIndex === 0
+                  ? "font-bold  text-white"
                   : "text-neutral-400"
-              }  whitespace-nowrap uppercase`}
-              onClick={() => handleClick(genre.id)}
+              }  whitespace-nowrap  uppercase`}
+              onClick={() => handleClick(0)}
             >
-              {genre.name}
+              Popular movies
             </button>
           </li>
-        ))}
+          {genres.map((genre) => (
+            <li key={genre.id}>
+              <button
+                type="button"
+                aria-label={`Films ${genre.name}`}
+                className={`${
+                  activeTabIndex === genre.id
+                    ? "font-bold text-white"
+                    : "text-neutral-400"
+                }  whitespace-nowrap uppercase`}
+                onClick={() => handleClick(genre.id)}
+              >
+                {genre.name}
+              </button>
+            </li>
+          ))}
+        </ul>
       </HorizontalScrollingList>
     </div>
   );

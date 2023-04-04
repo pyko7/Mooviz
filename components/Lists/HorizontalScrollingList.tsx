@@ -24,14 +24,13 @@ const HorizontalScrollingList = ({
           <ChevronLeftIcon className="w-6 h-6" aria-hidden="true" />
         </button>
       ) : null}
-      <ul
+      <div
         ref={ref}
-        role="listitem"
-        className="tabs__scrollbar--hide w-full flex gap-x-5 overflow-x-auto scroll-smooth md:py-4"
+        className="tabs__scrollbar--hide overflow-x-auto scroll-smooth md:py-4"
         onScroll={handleScroll}
       >
         {children}
-      </ul>
+      </div>
       {!scrollEnd ? (
         <button
           name="Faire défiler vers la droite"
