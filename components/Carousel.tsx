@@ -88,6 +88,7 @@ const Carousel = ({ movies }: MoviesList) => {
             <li key={imgIndex}>
               <button
                 type="button"
+                aria-label="Changer de film"
                 className={`w-3 h-3 rounded-[50%] ${
                   index !== imgIndex ? "bg-neutral-600" : "bg-neutral-200"
                 } hover:bg-neutral-200 cursor-pointer`}
