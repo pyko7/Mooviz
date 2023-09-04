@@ -48,5 +48,4 @@ module.exports = {
       // => @media (max-width: 576px) { ... }
     },
   },
-  plugins: [require("@tailwindcss/line-clamp")],
 };
